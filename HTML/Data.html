@@ -8,7 +8,7 @@ table, th, td {
 }
 </style>
 
-<table style="width:100%">
+<table style="width:100%" id = "logTable">
   <tr>
     <th>Date</th>
     <th>Exercise</th>
@@ -17,74 +17,60 @@ table, th, td {
     <th>Total</th>
     <th>Percentage</th>
   </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr><tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  
 </table>
 
+<script>
+  //these are test logs. TODO: remove from final
+  const log1 = {Date: "1/1/2023", Exercise:"Running", Durration:"12:34"};
+  const log2 = {Date: "1/2/2023", Exercise:"Biking", Durration:"43:21"};
+  
+  addLogToTable(log1);
+  addLogToTable(log2);
+  //End of test logs
+
+
+  
+  function addLogToTable(log)// adds a log to the table
+  {
+    const table = document.getElementById("logTable");
+    let row = table.insertRow();
+    
+    let Date = row.insertCell(0);
+    Date.innerHTML = log.Date;
+
+    let Exercise = row.insertCell(1);
+    Exercise.innerHTML = log.Exercise;
+
+    let Durration = row.insertCell(2);
+    Durration.innerHTML = log.Durration;
+
+    let Goal = row.insertCell(3);
+    Goal.innerHTML = log.Goal;
+
+    let Total = row.insertCell(4);
+    //if(table.lineCount == "0") TODO: fix total
+    //{
+        Total.innerHTML = log.Durration;
+    //}
+    //else
+    //{ 
+    //  Total.innerHTML = 3;
+      //Total.innerHTML = (log.rows.item(document.getElementById("lineCount").getAttribute("lineCount")).item(4).innerHTML) + log.Durration;
+     
+   // }
+   // lineCount = "1";
+
+    let Percentage = row.insertCell(5);
+    Percentage.innerHTML = log.Percentage;
+
+    
+  }
+  //Date, Exercise, Durration, Goal, Total,	Percentage
+</script>
 <div>
 	<a href="Main.html">
-		<button style="background-color: #white; height: 50px; width: 310px; border-radius: 10px; font-size: 25px; border-style: solid">Exit</button>
+		<button style="background-color: white; height: 50px; width: 310px; border-radius: 10px; font-size: 25px; border-style: solid">Exit</button>
 	</a>	
 </div>
 
