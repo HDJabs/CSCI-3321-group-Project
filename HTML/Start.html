@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <title>Start</title>
+<body style="background-color: #888;">
 <div> 
 <select name="Exercise" style="width: 300px; height: 80px; background-color: #aee5f2; font-size: 30px; border-radius: 10px" >
     <option value="Running">Running</option>
@@ -11,22 +12,49 @@
 <br>
 <div>		
 	
-	<button style="background-color: #ed3b88; height: 80px; width: 200px; border-radius: 10px">
+	<button onclick="startTimer()" style="background-color: #ed3b88; height: 80px; width: 200px; border-radius: 10px">
 		CountDown <br>
-		<input type="number" name="time" style="width: 50px">
+		<input type="number" min="0" max="60" name="time" style="width: 50px">
 		<select name="time_unit">
 			<option value="min">Minutes</option>
 			<option value="sec">Seconds</option>
 		</select>
 	</button>
-	
-	<button style="background-color: #52f789; height: 80px; width: 100px; border-radius: 10px">
-		START
+	<button onclick="startButtonClick()" name="start-stop" style="background-color: #52f789; height: 80px; width: 100px; border-radius: 10px">
+		<p id="startButton">START</p>
 	</button>
 </div>
 
 <div>
 	<a href="Main.html">
-		<button style="background-color: #white; height: 50px; width: 310px; border-radius: 10px; font-size: 25px; border-style: solid">Exit</button>
+		<button style=" height: 50px; width: 310px; border-radius: 10px; font-size: 25px; border-style: solid">Exit</button>
 	</a>	
 </div>
+</body>
+
+<script>
+function countdownButtonClick(){
+	startTimer();
+}
+function startButtonClick(){
+	var button = document.getElementById("startButton");
+	if(button.innerText== "STOP"){
+		stopTimer();
+	}
+	else if(button.innerText=="START"){
+		startTimer();
+	}
+	else{
+		document.write("sfdgsfdgs");
+	}
+}
+function startTimer(){
+	var button = document.getElementById("startButton");
+	button.innerText="STOP";
+}
+function stopTimer(){
+	var button = document.getElementById("startButton");
+	button.innerText="START";
+}
+
+</script>
