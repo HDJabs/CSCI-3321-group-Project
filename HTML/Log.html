@@ -3,7 +3,7 @@
 <body style="background-color: #888;">
 <div style="background-color: #90b5e8; border-color: #116ef0; width: 310px; border-width: 5px; border-style: solid">
 	<h2>Exercise:
-		<select name="exercise" style="width: 200px; height: 40px; font-size: 20px; border-radius: 10px" >
+		<select id="exercise" style="width: 200px; height: 40px; font-size: 20px; border-radius: 10px" >
 			<option value="running">Running</option>
 			<option value="walking">Walking</option>
 			<option value="skateboarding">SkateBoarding</option>
@@ -20,9 +20,9 @@
 			</h1>
 		</td>
 		<td>
-			<input type="number" min="0" max="24" name="durration-hours" style="width: 30px;"> hours
+			<input id="hours" type="number" min="0" max="24"  style="width: 30px;"> hours
 			<br>
-			<input type="number" min="0" max="60" name="durration-minutes" style="width: 30px;"> minutes		
+			<input id="minutes" type="number" min="0" max="60"  style="width: 30px;"> minutes		
 
 		</td>
 		</tr>
@@ -33,15 +33,15 @@
 
 <div style="background-color: #90b5e8; border-color: #116ef0; width: 310px; border-width: 5px; border-style: solid">
 	<h2>Date:
-	<input type="date" name="start"
+	<input id="date" type="date" name="start"
        value="2018-07-22"
        min="2018-01-01" max="2018-12-31">
 	</h2>
 </div>
 
 <div style="background-color: #90b5e8; border-color: #116ef0; width: 310px; border-width: 5px; border-style: solid">
-	<a href="LogEnteredConfirmationPage.html">
-		<button style="background-color: #113ff7; height: 50px; width: 300px; border-radius: 10px; font-size: 25px">ENTER</button>
+	<!--<a href="LogEnteredConfirmationPage.html">-->
+		<button onclick="enter()" style="background-color: #113ff7; height: 50px; width: 300px; border-radius: 10px; font-size: 25px">ENTER</button>
 	</a>
 </div>
 
@@ -50,3 +50,19 @@
 		<button style=" height: 50px; width: 310px; border-radius: 10px; font-size: 25px; border-style: solid">Exit</button>
 	</a>	
 </div>
+
+<p id="output"></p>
+
+<script>
+var exercise = document.getElementById("exercise").value;
+var hours = document.getElementById("hours").value;
+var minutes = document.getElementById("minutes").value;
+var date = document.getElementById("date").value;
+
+var output = document.getElementById("output");
+
+function enter(){
+	output.innerHTML = exercise + " for " + hours + " hours and " + minutes + " minutes on " + date;
+}
+</script>
+
