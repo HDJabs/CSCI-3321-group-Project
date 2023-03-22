@@ -62,6 +62,9 @@
     <Build Include="dbo\User.sql" />
     <Build Include="dbo\Exercise.sql" />
     <Build Include="dbo\ExerciseGoal.sql" />
-    <Build Include="dbo\Log.sql" />
+    <Build Include="dbo\Entry.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ExerciseLog.DB.refactorlog" />
   </ItemGroup>
 </Project>

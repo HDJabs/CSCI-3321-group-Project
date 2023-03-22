@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="527f613b-0b1e-4251-a3c8-65787874d197" ChangeDateTime="03/22/2023 14:55:52">
+    <Property Name="ElementName" Value="[dbo].[ExerciseGoal].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExerciseGoal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExerciseId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="33af6796-d046-4fa5-b4b4-2fc41b2e0b00" ChangeDateTime="03/22/2023 14:56:34">
+    <Property Name="ElementName" Value="[dbo].[ExerciseGoal].[ExerciseId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExerciseGoal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExerciseGoalId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3369ed48-cd4c-41fa-a4f6-0a0c9d18ed28" ChangeDateTime="03/22/2023 14:56:40">
+    <Property Name="ElementName" Value="[dbo].[ExerciseGoal].[ExerciseName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExerciseGoal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExerciseId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="087478d1-e58a-42f1-80bd-00ce660e7895" ChangeDateTime="03/22/2023 14:58:32">
+    <Property Name="ElementName" Value="[dbo].[Exercise].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Exercise]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExerciseId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cf2f637d-2032-48c1-b0b1-0d6bbfdd3a9c" ChangeDateTime="03/22/2023 14:59:14">
+    <Property Name="ElementName" Value="[dbo].[Log].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EntryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0b4fb238-d016-4566-aa39-ee59e25c9e10" ChangeDateTime="03/22/2023 15:00:44">
+    <Property Name="ElementName" Value="[dbo].[User].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c7c5ae63-4157-45a2-a9da-ff4276a4cf3a" ChangeDateTime="03/22/2023 15:15:19">
+    <Property Name="ElementName" Value="[dbo].[Entry].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Entry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EntryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a9a0981-6d89-4035-8642-47a39cb5e6bc" ChangeDateTime="03/22/2023 15:16:27">
+    <Property Name="ElementName" Value="[dbo].[Entry].[Minutes]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Entry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MinutesExercised" />
+  </Operation>
+</Operations>

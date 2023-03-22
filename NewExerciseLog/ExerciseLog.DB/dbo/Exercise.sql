@@ -1,4 +1,5 @@
 ﻿CREATE TABLE [dbo].[Exercise]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[ExerciseId] INT NOT NULL PRIMARY KEY, 
+    [ExerciseName] VARCHAR(100) NOT NULL
 )

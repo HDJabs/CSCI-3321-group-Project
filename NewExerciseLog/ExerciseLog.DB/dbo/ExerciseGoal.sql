@@ -1,4 +1,8 @@
 ﻿CREATE TABLE [dbo].[ExerciseGoal]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[ExerciseGoalId] INT NOT NULL PRIMARY KEY, 
+    [ExerciseId] INT NOT NULL, 
+    [UserId] INT NOT NULL, 
+    [Goal] VARCHAR(5) NOT NULL, 
+    [Total] VARCHAR(5) NOT NULL
 )
