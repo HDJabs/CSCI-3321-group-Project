@@ -1,0 +1,41 @@
+﻿@page
+@model NewExerciseLog.UI.Pages.SignUp.IndexModel
+@{
+}
+
+<title>Sign Up Page</title>
+
+<h1>This is the Sign Up page.</h1>
+
+<a asp-area="" asp-page="/HomePage/Index">Home</a>
+
+<form action="post">
+    <div class="sign_in_box">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" />
+        </div>
+
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" />
+        </div>
+
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" />
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" class="form-control" id="password" />
+        </div>
+
+        <!--check out getbootstrap.com/docs/5.3/forms/layout/   to maybe get a better layout going-->
+
+
+        <button type="button" class="btn btn-primary">Sign Up</button>
+        <button type="button" class="btn btn-link">Go Back</button>
+
+    </div>
+</form>
