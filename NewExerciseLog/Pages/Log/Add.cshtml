@@ -1,0 +1,38 @@
+﻿@page
+@model NewExerciseLog.UI.Pages.Log.AddModel
+@{
+}
+
+<title>Add Entry Page</title>
+
+<h1>This is the Add Entry page.</h1>
+
+<div style="width:50%;">
+    <div>
+        <label for="exercise">Exercise:</label>
+        <select name="exercise" id="exercise">
+            <option value="running">Running</option>
+            <option value="walking">Walking</option>
+            <option value="biking">Biking</option>
+            <option value="skateboarding">Skateboarding</option>
+        </select>
+    </div>
+
+    <div style="width:40%; float: left;">
+        <label for="hours">Hours:</label>
+        <input type="int" class="form-control" id="hours" />
+    </div>
+    <div style ="margin-left:50%; width:40%">
+        <label for="minutes">Minutes:</label>
+        <input type="int" class="form-control" id="minutes" />
+    </div>
+
+    <div>
+        <label for="date">Date:</label>
+        <input type="datetime" class="form-control" id="date"  />
+    </div>
+    <br />
+    <a href="/ViewStats/Index" class="btn btn-primary"> Add Entry</a>
+    <a href="/HomePage/Index" class="btn btn-link"> Go Home</a>
+
+</div>
