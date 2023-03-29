@@ -4,9 +4,9 @@
 	{
 		public int ExerciseGoalId { get; set; }
 
-        public int UserId { get; set; }
+        public User User { get; set; }
 
-        public int ExerciseID { get; set; }
+        public Exercise Exercise { get; set; }
 
         public string Goal { get; set; }
 

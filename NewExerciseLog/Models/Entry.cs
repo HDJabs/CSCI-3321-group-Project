@@ -6,7 +6,7 @@
 
 		public DateTime EntryDate { get; set; }
 		
-		public int ExerciseGoalId { get; set; }
+		public ExerciseGoal ExerciseGoal { get; set; }
 
 		public int HoursExercised { get; set; }
 
