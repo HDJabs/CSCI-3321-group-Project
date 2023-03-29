@@ -67,4 +67,7 @@
   <ItemGroup>
     <RefactorLog Include="ExerciseLog.DB.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="sync-data.sql" />
+  </ItemGroup>
 </Project>
