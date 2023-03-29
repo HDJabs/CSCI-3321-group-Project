@@ -5,7 +5,8 @@ namespace NewExerciseLog.UI.Pages.Log
 {
     public class AddModel : PageModel
     {
-        public void OnGet()
+
+		public void OnGet()
         {
         }
     }

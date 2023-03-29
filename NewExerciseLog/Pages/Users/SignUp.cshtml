@@ -3,37 +3,61 @@
 @{
 }
 
+<script type="text/javascript">
+    function validateInput(){
+        var isValid = true;
+        var UserName = document.getElementById("inputUserName");
+        //if (UserName is unique) {
+        //  isValid=true;
+        //  document.getElementById("UserNameError").innerHTML="UserName is not valid.";
+        // }
+        // else {isValid=false;}
+        document.getElementById("UserNameError").innerHTML="Testing UserNameError.";
+        isValid = false;
+
+        return isValid;
+    }
+</script>
+
 <title>Sign Up Page</title>
 
 <h1>This is the Sign Up page.</h1>
 
 <form method="post">
     <div class="sign_in_box" style="width:50%;">
+
         <div>
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" />
+            <input type="text" class="form-control" id="inputUserName" asp-for="@Model.NewUser.UserName"/>
+            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
         </div>
 
         <div>
             <label for="firstName">First Name:</label>
-            <input type="text" class="form-control" id="firstName" />
+            <input type="text" class="form-control" id="inputFirstName" asp-for="@Model.NewUser.FirstName" />
+            <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
+
         </div>
 
         <div>
             <label for="lastName">Last Name:</label>
-            <input type="text" class="form-control" id="lastName" />
+            <input type="text" class="form-control" id="inputLastName" asp-for="@Model.NewUser.LastName" />
+            <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
+
         </div>
 
         <div>
             <label for="password">Password:</label>
-            <input type="text" class="form-control" id="password" />
+            <input type="text" class="form-control" id="inputPassword" asp-for="@Model.NewUser.UserPasswordHash" />
+            <span asp-validation-for="NewUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
+
         </div>
 
         <!--check out getbootstrap.com/docs/5.3/forms/layout/   to maybe get a better layout going-->
 
 
-        <a href="/HomePage/Index" class="btn btn-primary">Sign Up</a>
-        <a href="/Users/SignIn" class="btn btn-link">Go Back</a>
+        <button type="submit" class="btn btn-primary" onclick="return validateInput()">Sign Up!</button>
+		<a href="/Users/SignIn" class="btn btn-link">Go Back</a>
 
     </div>
 </form>
