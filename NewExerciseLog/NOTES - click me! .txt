@@ -1,0 +1,30 @@
+﻿this is a to-do list. please contribute
+
+I need to re-organize the folders in Pages. 
+should be a folder for User, Entry, Exercise, and Exercise Goals (one folder for each chart in the lucid chart).
+within the folder should be CRUD (create, retrieve, update, and delete).
+each of the files for the ^step above^ should be labeled as "addUser" "retrieveUser" (sign in), etc. type beat.
+^^making sure that every files' name is descriptive and unique - to make shit easier to read. but index is ok, just try not to. 
+
+sometime after this reorganization, restructure the entire Layout. chagne the list at the top to include the actually useful pages. 
+keep the ExerciseLog item. Update the main part of _Layout to include information on what this project is and who contributed - its a preface
+
+someone needs to add icons from bootstrap. check the recording 3-29 @~1:44 local time (the time shown on the pc in the recording).
+Add the line of code in the head of _Layout then update every button that can be updateed with an icon. that is, every button in the entire project
+
+learn how to make the sections of html code for every entry item (in the view entries page) so that the page can dynamicaly generate a line for each entry
+
+Things we should do RIGHT NOW!
+- get the repo and ssms to work on your device. do this with BOTH the prfessors project (NTOTL/My-shelf (i think)) and our repo. 
+the reason for both is so that A, we are on the same page. and B, you can look at and compare ours to his.
+pro tip! - we are all running windows on laptops, yes? do ctrl+win + D. you have made a new desktop! swipe between them using either 3 or 4 fingers (it varies by device and settings). 
+and strategicaly spread your workspace around these virtual desktops. for me, i have the recording on one, our project on the next, and his project on the next.
+i would highly highly suggest learning the very basics of Virtual Desktops - that's what this is called. i can promise you it will help emensly with workflow!
+
+another tip - go to library with an hdmi cable and hijack a monitor so that you can have one extra external monitor. this will ALSO immensly help with workflow!
+go to Settings > System > Display to tune your device to work for external monitors.
+
+
+
+
+

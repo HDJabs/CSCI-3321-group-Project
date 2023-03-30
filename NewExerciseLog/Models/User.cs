@@ -1,4 +1,6 @@
-﻿namespace NewExerciseLog.UI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NewExerciseLog.UI.Models
 {
 	public class User
 	{
@@ -9,6 +11,7 @@
         public string LastName { get; set; }
 
 		public string UserName { get; set; }
+		[Required(ErrorMessage = "Username is required")]
 
 		public string UserPasswordHash { get; set; }
 

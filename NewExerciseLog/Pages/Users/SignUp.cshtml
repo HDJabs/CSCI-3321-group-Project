@@ -6,17 +6,26 @@
 <script type="text/javascript">
     function validateInput(){
         var isValid = true;
-        var UserName = document.getElementById("inputUserName");
-        //if (UserName is unique) {
-        //  isValid=true;
-        //  document.getElementById("UserNameError").innerHTML="UserName is not valid.";
-        // }
-        // else {isValid=false;}
-        document.getElementById("UserNameError").innerHTML="Testing UserNameError.";
-        isValid = false;
+        var userName = document.getElementById("inputUserName");
+        var firstName = document.getElementById("inputFirstName");
+        var lastName = document.getElementById("inputLastName");
+       
+        if(userName.value == ""){
+            isValid = false;
+            document.getElementById("UserNameError").innerHTML = "UserNameError.";
+        }
+
+        if (firstName.value == "") {
+            isValid = false;
+            document.getElementById("FirstNameError").innerHTML = "FirstNameError.";
+        }
+        
+
 
         return isValid;
     }
+
+    //
 </script>
 
 <title>Sign Up Page</title>
