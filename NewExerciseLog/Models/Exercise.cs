@@ -1,6 +1,9 @@
-﻿namespace NewExerciseLog.UI.Models
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace NewExerciseLog.UI.Models
 {
-	public class Exercise
+    [BindProperties]
+    public class Exercise
 	{
 		public int ExerciseId { get; set; }
 

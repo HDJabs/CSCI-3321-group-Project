@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewExerciseLog.UI.Models
 {
-	public class User
+    [BindProperties]
+    public class User
 	{
 		public int UsrId { get; set; }
 

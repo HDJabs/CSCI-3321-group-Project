@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NewExerciseLog.UI.Models;
 
-namespace NewExerciseLog.UI.Pages.SignUp
+namespace NewExerciseLog.UI.Pages.Users
 {
-    public class IndexModel : PageModel
+    public class NewUserModel : PageModel
     {
         [BindProperty]
         public User NewUser { get; set; } = new User();
@@ -13,3 +13,5 @@ namespace NewExerciseLog.UI.Pages.SignUp
         }
     }
 }
+
+

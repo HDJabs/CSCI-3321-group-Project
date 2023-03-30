@@ -1,16 +1,16 @@
 ﻿@page
-@model NewExerciseLog.UI.Pages.SignUp.IndexModel
+@model NewExerciseLog.UI.Pages.Users.NewUserModel
 @{
 }
 
 <script type="text/javascript">
-    function validateInput(){
+    function validateInput() {
         var isValid = true;
         var userName = document.getElementById("inputUserName");
         var firstName = document.getElementById("inputFirstName");
         var lastName = document.getElementById("inputLastName");
-       
-        if(userName.value == ""){
+
+        if (userName.value == "") {
             isValid = false;
             document.getElementById("UserNameError").innerHTML = "UserNameError.";
         }
@@ -19,7 +19,7 @@
             isValid = false;
             document.getElementById("FirstNameError").innerHTML = "FirstNameError.";
         }
-        
+
 
 
         return isValid;
@@ -37,7 +37,7 @@
 
         <div>
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="inputUserName" asp-for="@Model.NewUser.UserName"/>
+            <input type="text" class="form-control" id="inputUserName" asp-for="@Model.NewUser.UserName" />
             <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
         </div>
 
@@ -66,7 +66,7 @@
 
 
         <button type="submit" class="btn btn-primary" onclick="return validateInput()">Sign Up!</button>
-		<a href="/Users/SignIn" class="btn btn-link">Go Back</a>
+        <a href="/UserSignIn" class="btn btn-link">Go Back</a>
 
     </div>
 </form>

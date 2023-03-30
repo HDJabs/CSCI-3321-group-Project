@@ -1,5 +1,5 @@
 ﻿@page
-@model NewExerciseLog.UI.Pages.Log.AddModel
+@model NewExerciseLog.UI.Pages.Entries.AddEntryModel
 @{
 }
 
@@ -23,7 +23,7 @@
         <input type="int" class="form-control" id="inputHours" asp-for="@Model.NewEntry.HoursExercised" />
     </div>
 
-    <div style ="margin-left:50%; width:40%">
+    <div style="margin-left:50%; width:40%">
         <label for="minutes">Minutes:</label>
         <input type="int" class="form-control" id="inputMinutes" asp-for="@Model.NewEntry.MinutesExercised" />
     </div>
@@ -32,8 +32,9 @@
         <label for="date">Date:</label>
         <input type="datetime" class="form-control" id="inputDate" asp-for="@Model.NewEntry.EntryDate" />
     </div>
+
     <br />
-    <a href="/ViewStats/Index" class="btn btn-primary"> Add Entry</a>
-    <a href="/HomePage/Index" class="btn btn-link"> Go Home</a>
+    <a href="/Users/HomePage" class="btn btn-primary"> Add Entry</a>
+    <a href="/Users/HomePage" class="btn btn-link"> Go Home</a>
     <!--update these ^^^^-->
 </div>

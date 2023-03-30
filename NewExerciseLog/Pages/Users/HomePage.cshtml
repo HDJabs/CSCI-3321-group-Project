@@ -1,0 +1,26 @@
+﻿@page
+@model NewExerciseLog.UI.Pages.Users.HomePageModel
+@{
+}
+<title>Home Page</title>
+<h1>This is the Home Page</h1>
+
+
+<form class="row g-3">
+	
+	<div class="col-12">
+		<a href="/Entries/AddEntry" class="btn btn-primary btn-block">Add Log</a>
+	</div>
+	<div>
+		<a href="/Entries/ViewEntries" class="btn btn-primary btn-block">View Entries</a>
+	</div>
+
+	<div>A BOX that shows the goal statistics</div>
+
+	<div>
+		<a href="/ExerciseGoals/NewExerciseGoal" class="btn btn-primary btn-block">change goal</a>
+	</div>
+
+	<a href="/Users/UserSignIn" class="btn btn-link"> Sign Out</a>
+	
+</form>
