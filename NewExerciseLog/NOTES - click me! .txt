@@ -28,3 +28,4 @@ go to Settings > System > Display to tune your device to work for external monit
 
 
 
+
