@@ -3,20 +3,52 @@
 @{
 }
 
+<script type="text/javascript">
+    function validateInput() {
+        var isValid = true;
+        var userName = document.getElementById("inputUserName");
+        var password = document.getElementById("inputPassword");
+       
+        if(userName.value === ""){
+            isValid = false;
+            document.getElementById("UserNameError").innerHTML = "UserNameError.";
+        }
+
+        if (password.value === "") {
+            document.getElementById("PasswordError").innerHTML = "Password Error.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+        //
+</script>
+
+
 <title>Sign In Page</title>
 
 <h1>This is the Sign In page.</h1>
 
+<form method="post">
+    <div style="width:50%;" class="sign_in_box">
 
-<div style="width:50%;" class="sign_in_box">
-    <div class="sign_in_box_row">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" />
+        <div>
+            <label for="inputUserName">Username:</label>
+            <input type="text" class="form-control" id="inputUserName" asp-for="SignInUser.UserName"/>
+            <span asp-validation-for="SignInUser.UserName" class="text-danger" id="UserNameError"></span>
+
+        </div>
+
+        <div class="sign_in_box_row">
+            <label for="inputPassword">Password:</label>
+            <input type="text" class="form-control" id="inputPassword" asp-for="SignInUser.UserPasswordHash" />  
+            <span asp-validation-for="SignInUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
+        </div>
+
+    
+        <button type="submit" class="btn btn-primary" onclick="return validateInput()">Log in!</button> <!-- goes to homepage if valid-->
+
+        <a href="NewUser" class="btn btn-link">Sign Up</a>
     </div>
-    <div class="sign_in_box_row">
-        <label for="password">Password:</label>
-        <input type="text" class="form-control" id="password" />
-    </div>
-    <a href="HomePage" class="btn btn-primary">Log In</a>
-    <a href="NewUser" class="btn btn-link">Sign Up</a>
-</div>
+</form>

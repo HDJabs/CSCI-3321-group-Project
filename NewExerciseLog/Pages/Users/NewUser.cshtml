@@ -9,6 +9,7 @@
         var userName = document.getElementById("inputUserName");
         var firstName = document.getElementById("inputFirstName");
         var lastName = document.getElementById("inputLastName");
+        var passwordHash = document.getElementById("inputPassword");
 
         if (userName.value == "") {
             isValid = false;
@@ -21,6 +22,9 @@
         }
 
 
+        if(isValid){
+            document.getElementById("PasswordError").innerHTML = "its valid";
+        }
 
         return isValid;
     }
@@ -36,28 +40,28 @@
     <div class="sign_in_box" style="width:50%;">
 
         <div>
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="inputUserName" asp-for="@Model.NewUser.UserName" />
+            <label for="inputUserName" >Username:</label>
+            <input type="text" class="form-control" id="inputUserName" asp-for="NewUser.UserName" />
             <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
         </div>
 
         <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" class="form-control" id="inputFirstName" asp-for="@Model.NewUser.FirstName" />
+            <label for="inputFirstName">First Name:</label>
+            <input type="text" class="form-control" id="inputFirstName" asp-for="NewUser.FirstName" />
             <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
 
         </div>
 
         <div>
-            <label for="lastName">Last Name:</label>
-            <input type="text" class="form-control" id="inputLastName" asp-for="@Model.NewUser.LastName" />
+            <label for="inputLastName" >Last Name:</label>
+            <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
             <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
 
         </div>
 
         <div>
-            <label for="password">Password:</label>
-            <input type="text" class="form-control" id="inputPassword" asp-for="@Model.NewUser.UserPasswordHash" />
+            <label for="inputPassword" > Password:</label>
+            <input type="text" class="form-control" id="inputPassword" asp-for="NewUser.UserPasswordHash" />
             <span asp-validation-for="NewUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
 
         </div>
