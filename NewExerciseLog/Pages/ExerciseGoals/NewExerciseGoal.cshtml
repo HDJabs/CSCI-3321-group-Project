@@ -1,5 +1,5 @@
 ﻿@page
-@model NewExerciseLog.UI.Pages.ExerciseGoals.AddExerciseGoalModel
+@model NewExerciseLog.UI.Pages.ExerciseGoals.NewExerciseGoalModel
 @{
 }
 
@@ -24,29 +24,35 @@
 
 
     </fieldset>
-</form>
+
+<!-- should not be "NewEntry". you are not accessing entries, you are accessing exercise goals
+    you should use "NewExerciseGoal". look in models folder to see the GETers and SETers.
+    other variable names must change, too. 
+    -->
    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
      <div class=" row mb-3">
-         <label for="inputUserID" class=" col-sm-2 col-form-label" asp-for="NewEntry.User"></label>
+         <label for="inputUserID" class=" col-sm-2 col-form-label" asp-for="NewExerciseGoal.User"></label>
          <div class="col-sm-10">
-           <input type= "text" class="form-control" id="inputUser" asp-for="NewEntry.User" />
-           <span asp-validation-for="NewEntry.User" class="text-danger" id="UsereError"></span>
-           </div>
-        </div>
-        <div class=" row mb-3">
-            <label for="inputGoal" class=" col-sm-2 col-form-label"> UserGoal: </label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputUserGoal" asp-for="NewEntry.Exercise" />
-                </div>
-              </div>
-        <div class=" row mb-3">
-            <label for="inputGoal" class=" col-sm-2 col-form-label">User Goal</label>
-            <div class="col-sm-10"
-               <input type="text" class="form-comtrol" id="inputUserGoal" asp-for="NewEntry.Goal" />
-               </div>
-            </div>
-            <button type ="submit" class=" btn btn-primary" onclick="return validinput()">New Exercise</button>
+           <input type= "text" class="form-control" id="inputUser" asp-for="NewExerciseGoal.User" /> <!-- User is not a text variable, it is an object. -->
+           <span asp-validation-for="NewExerciseGoal.User" class="text-danger" id="UsereError"></span>
+         </div>
+     </div>
 
+     <div class=" row mb-3">
+         <label for="inputGoal" class=" col-sm-2 col-form-label"> UserGoal: </label>
+         <div class="col-sm-10">
+             <input type="text" class="form-control" id="inputUserGoal" asp-for="NewExerciseGoal.Exercise" />
+         </div>
+     </div>
 
+     <div class=" row mb-3">
+         <label for="inputGoal" class=" col-sm-2 col-form-label">User Goal</label>
+         <div class="col-sm-10">
+            <input type="text" class="form-comtrol" id="inputUserGoal" asp-for="NewExerciseGoal.Goal" />
+         </div>
+     </div>
 
+     <button type ="submit" class=" btn btn-primary" onclick="return validinput()">Update Exercise Goal!</button>
+
+</form>
 <!----> look at add author page update with a real button(cancel next(boot strap)(code regarding submit form )
