@@ -2,6 +2,19 @@
 @model NewExerciseLog.UI.Pages.ExerciseGoals.NewExerciseGoalModel
 @{
 }
+<script type="text/javascript">
+    function validateInput() {
+        var isValid = true;
+        var minutes = document.getElementById("inputMinutes");
+        var hours = document.getElementById("inputHours");
+        var exercise = document.getElementById("inputExercise").value;
+        var stringDate = document.getElementById("inputDate").toString();
+        document.getElementById("test").innerHTML = isValid.toString();
+        document.getElementById("test").innerHTML = document.getElementById("test").innerHTML + minutes.toString();
+        return false;
+    }
+
+</script>
 
 <title>Exercise Goals Page</title>
 
