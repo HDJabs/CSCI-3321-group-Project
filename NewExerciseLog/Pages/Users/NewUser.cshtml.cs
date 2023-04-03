@@ -51,7 +51,6 @@ namespace NewExerciseLog.UI.Pages.Users
             }
             else
             {
-                Console.WriteLine("returning");
                 return Page();
             }
         }
