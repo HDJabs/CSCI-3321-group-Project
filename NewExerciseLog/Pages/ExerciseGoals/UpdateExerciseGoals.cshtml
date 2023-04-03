@@ -1,5 +1,5 @@
 ﻿@page
-@model NewExerciseLog.UI.Pages.ExerciseGoals.UpdateExerciseGoalModel
+@model NewExerciseLog.UI.Pages.ExerciseGoals.UpdateExerciseGoalsModel
 @{
 }
 
@@ -7,16 +7,103 @@
 
 <h1>This is the Exercise-Time Goals Page.</h1>
 
+<script type="text/javascript">
+	function validateInput(){}
+		/*var isValid = true;
+
+		var runningCB = document.getElementById("running-checkbox");
+		var runningH = document.getElementById("running-hours");
+		var runningM = document.getElementById("running-minutes");
+
+		if(isValid) {
+			document.getElementById("test-span").innerHTML = "valid";
+		}
+		else {
+			document.getElementById("test-span").innerHTML = "not valid";
+		}
+		
+		if(runningCB.checked){
+			document.getElementById("test-span").innerHTML += ". Goal=  H:" + runningH.value + " M:" + runningM.value + "  goalstring= " + formatString(runningH, runningM);
+			5@Model.runUpdate = "UPDATE ExerciseGoal SET Goal=" + formatString(runningH, runningM) + " WHERE ExerciseId=2, UserId=1;"
+		}
+		return isValid;
+	}
+	*/
+	function formatString(h, m){ //input type of <input type="number">
+		var goalstring ="";
+		if(h.value == ""){
+			goalstring += "00";
+		}
+		else if(h.value < 10 ){
+			goalstring += "0";
+		}
+		goalstring += h.value + ":";
+
+		if(m.value == ""){
+			goalstring +="00";
+		}
+		else if(m.value < 10) {
+			goalstring += "0";
+		}
+		goalstring += m.value;
+		return goalstring;
+	}
+
+	function testValidate(){
+		var isValid = true;
+
+		var runningCB = document.getElementById("running-checkbox");
+		var runningH = document.getElementById("running-hours");
+		var runningM = document.getElementById("running-minutes");
+		
+
+
+		/*
+		var walkingCB = document.getElementById("walking-checkbox");
+		var walkingH = document.getElementById("walking-hours").value;
+		var walkingM = document.getElementById("walking-minutes").value;
+
+		var bikingCB = document.getElementById("biking-checkbox");
+		var bikingH = document.getElementById("biking-hours").value;
+		var bikingM = document.getElementById("biking-minutes").value;
+
+		var skateboardingCB = document.getElementById("skateboarding-checkbox");
+		var skateboardingH = document.getElementById("skateboarding-hours").value;
+		var skateboardingM = document.getElementById("skateboarding-minutes").value;
+		*/
+		
+
+
+		
+		if(isValid) {
+			document.getElementById("test-span").innerHTML = "valid";
+		}
+		else {
+			document.getElementById("test-span").innerHTML = "not valid";
+		}
+		
+		if(runningCB.checked){
+			document.getElementById("test-span").innerHTML += ". Goal= " + formatString(runningH, runningM);
+			
+			document.getElementById("test-span").innerHTML += @Model.runUpdate;
+			
+			@Model.runUpdate = "UPDATE ExerciseGoal SET Goal=\"" + formatString(runningH, runningM) + "\" WHERE ExerciseId=2, UserId=1;";
+		}
+		
+	}
+		
+</script>
+
 <form method="post">
 	<table>
 		<tr>
 			<td>
-				<input class="form-check-input" id="running-Checkbox" type="checkbox" id="autoSizingCheck2">
-				<label class="form-check-label" for="running-Checkbox">Running</label>
+				<input class="form-check-input" id="running-checkbox" type="checkbox" >
+				<label class="form-check-label" for="running-checkbox">Running</label>
 			</td>
 			<td>
 				<label for="running-hours">Hours:</label>
-				<input type="number" id="running-hours" min="0" max="20" />
+				<input type="number" id="running-hours" min="0" max="20"/>
 			</td>
 			<td>
 				<label for="running-minutes">Minutes:</label>
@@ -26,8 +113,8 @@
 
 		<tr>
 			<td>
-				<input class="form-check-input" id="walking-Checkbox" type="checkbox" id="autoSizingCheck2">
-				<label class="form-check-label" for="walking-Checkbox">Walking</label>
+				<input class="form-check-input" id="walking-checkbox" type="checkbox">
+				<label class="form-check-label" for="walking-checkbox">Walking</label>
 			</td>
 			<td>
 				<label for="walking-hours">Hours:</label>
@@ -41,8 +128,8 @@
 
 		<tr>
 			<td>
-				<input class="form-check-input" id="biking-Checkbox" type="checkbox" id="autoSizingCheck2">
-				<label class="form-check-label" for="biking-Checkbox">Biking</label>
+				<input class="form-check-input" id="biking-checkbox" type="checkbox" >
+				<label class="form-check-label" for="biking-checkbox">Biking</label>
 			</td>
 			<td>
 				<label for="biking-hours">Hours:</label>
@@ -56,8 +143,8 @@
 
 		<tr>
 			<td>
-				<input class="form-check-input" id="skateboard-Checkbox" type="checkbox" id="autoSizingCheck2">
-				<label class="form-check-label" for="skateboard-Checkbox">Skateboarding</label>
+				<input class="form-check-input" id="skateboard-checkbox" type="checkbox" >
+				<label class="form-check-label" for="skateboard-checkbox">Skateboarding</label>
 			</td>
 			<td>
 				<label for="skateboarding-hours">Hours:</label>
@@ -75,5 +162,10 @@
 
 	<a href="/Users/HomePage" class="btn btn-link">back home</a>
 
-</form>
+	<br />
+	
 
+</form>
+<button onclick="testValidate()">TEST</button>
+
+<span id="test-span">default</span>

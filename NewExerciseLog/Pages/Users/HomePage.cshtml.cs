@@ -26,7 +26,7 @@ namespace NewExerciseLog.UI.Pages.Users
                     {
                         ExerciseGoal goal = new ExerciseGoal();
                         goal.Goal = reader["Goal"].ToString();
-                        goal.Exercise = reader["ExerciseName"].ToString();
+                        goal.ExerciseName = reader["ExerciseName"].ToString();
                         goal.Total = reader["Total"].ToString();
                         goals.Add(goal);
                     }
