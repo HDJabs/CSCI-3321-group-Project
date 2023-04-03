@@ -2,8 +2,12 @@
 @model NewExerciseLog.UI.Pages.Users.HomePageModel
 @{
 }
+<script>
+	document.getElementById("userIdDisplay").innerHTML = 
+</script>
 <title>Home Page</title>
 <h1>This is the Home Page</h1>
+<h2>User is <span id="userIdDisplay"></span></h2>
 
 
 <form class="row g-3">
@@ -15,7 +19,25 @@
 		<a href="/Entries/ViewEntries" class="btn btn-primary btn-block">View Entries</a>
 	</div>
 
-	<div>A BOX that shows the goal statistics</div>
+	<div>
+		<table>
+			<tr>
+				<th>Exercise</th>
+				<th>Goal</th>
+				<th>Total</th>
+			</tr>
+			@foreach (var obj in Model.goals)
+			{
+				<tr>
+					<td>@obj.Exercise</td>
+					<td>@obj.Goal</td>
+					<td>@obj.Total</td>
+				</tr>
+			}
+
+		</table>
+	</div>
+	
 
 	<div>
 		<a href="/ExerciseGoals/NewExerciseGoal" class="btn btn-primary btn-block">change goal</a>
@@ -25,4 +47,10 @@
 	
 </form>
 
+<style>
+	table, th, td{
+		border: 1px solid black;
+		padding: 5px;
+	}
+</style>
 

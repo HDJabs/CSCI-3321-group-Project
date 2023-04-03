@@ -7,9 +7,9 @@ namespace NewExerciseLog.UI.Models
 	{
 		public int ExerciseGoalId { get; set; }
 
-        public User User { get; set; }
+        public int UserId { get; set; }
 
-        public Exercise Exercise { get; set; }
+        public string Exercise { get; set; }
 
         public string Goal { get; set; }
 

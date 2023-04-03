@@ -25,7 +25,6 @@ namespace NewExerciseLog.UI.Pages.Users
                              * 6. Close the SQL connection
                              * 
                              */
-                Console.WriteLine("in the if statement");
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
                     // step 1

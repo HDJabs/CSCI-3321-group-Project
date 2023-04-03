@@ -63,6 +63,7 @@
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\UserSystemRole.sql" />
     <Build Include="dbo\Tables\SystemRole.sql" />
+    <PostDeploy Include="Script.PostDeployment1.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ExerciseLog.DB.refactorlog" />
@@ -71,8 +72,5 @@
     <Build Include="dbo\Tables\Entry.sql" />
     <Build Include="dbo\Tables\Exercise.sql" />
     <Build Include="dbo\Tables\ExerciseGoal.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="data.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
