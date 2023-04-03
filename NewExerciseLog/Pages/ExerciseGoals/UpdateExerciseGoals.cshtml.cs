@@ -8,5 +8,10 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
         public void OnGet()
         {
         }
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("/Users/HomePage");
+            return Page();
+        }
     }
 }
