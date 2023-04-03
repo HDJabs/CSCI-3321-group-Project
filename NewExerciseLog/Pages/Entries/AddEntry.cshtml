@@ -9,9 +9,7 @@
         var hours = document.getElementById("inputHours");
         var exercise = document.getElementById("inputExercise").value;
         var stringDate = document.getElementById("inputDate").toString();
-        document.getElementById("test").innerHTML = isValid.toString();
-        document.getElementById("test").innerHTML = document.getElementById("test").innerHTML + minutes.toString();
-        return false;
+        return isValid;
     }    
 
 </script>
@@ -21,11 +19,10 @@
 <h1>This is the Add Entry page.</h1>
 
 <form method="post">
-    <span id="test"></span>
     <div style="width:50%;">
         <div>
             <label for="exercise">Exercise:</label>
-            <select name="exercise" id="inputExercise" asp-for="@Model.NewEntry.ExerciseGoal.Exercise.ExerciseName">
+            <select name="exercise" id="inputExercise" asp-for="NewEntry.ExerciseGoal.Exercise.ExerciseName">
                 <option value="running">Running</option>
                 <option value="walking">Walking</option>
                 <option value="biking">Biking</option>
@@ -35,24 +32,24 @@
 
         <div style="width:40%; float: left;">
             <label for="inputHours">Hours:</label>
-            <input type="int" class="form-control" id="inputHours" asp-for="@Model.NewEntry.HoursExercised" />
+            <input type="text" class="form-control" id="inputHours" asp-for="NewEntry.HoursExercised" />
         </div>
 
         <div style="margin-left:50%; width:40%">
             <label for="inputMinutes">Minutes:</label>
-            <input type="int" class="form-control" id="inputMinutes" asp-for="@Model.NewEntry.MinutesExercised" />
+            <input type="text" class="form-control" id="inputMinutes" asp-for="NewEntry.MinutesExercised" />
         </div>
 
         <div>
             <label for="inputDate">Date:</label>
-            <input type="datetime" class="form-control" id="inputDate" asp-for="@Model.NewEntry.EntryDate" />
+            <input type="datetime" class="form-control" id="inputDate" asp-for="NewEntry.EntryDate" />
         </div>
 
         <br />
-        <a href="/Users/HomePage" class="btn btn-primary"> Add Entry</a>
+        <!--<a href="/Users/HomePage" class="btn btn-primary"> Add Entry</a>-->
         <a href="/Users/HomePage" class="btn btn-link"> Go Home</a>
         <!--update these ^^^^-->
         <!--vv updated vv-->
         <button type="submit" class="btn btn-primary" onclick="return validateInput()">Add Entry!</button>
     </div>
-</form>cons
+</form>
