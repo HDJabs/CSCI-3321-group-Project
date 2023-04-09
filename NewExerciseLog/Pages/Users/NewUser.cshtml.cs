@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
 
@@ -41,18 +42,32 @@ namespace NewExerciseLog.UI.Pages.Users
                     cmd.Parameters.AddWithValue("@salt", "salt");
                     cmd.Parameters.AddWithValue("@joined", date);
                     cmd.Parameters.AddWithValue("@lastLog", date);
+					conn.Open();
+					cmd.ExecuteNonQuery();
+				}
 
 
+                
 
+                //now find the ID 
+                int newID;
+                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+                {
+                    string sql = "SELECT UserId FROM [User] WHERE UserName = @userName;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@userName", NewUser.UserName);
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-                    return RedirectToPage("HomePage");
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        newID = (int)reader["UserId"];
+                        return RedirectToPage("HomePage", new { id = newID });
+                    }
                 }
-            }
-            else
-            {
-                return Page();
-            }
+			}
+            return Page();
+            
         }
     }
 }

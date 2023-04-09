@@ -14,32 +14,34 @@ namespace NewExerciseLog.UI.Pages.Users
         }
         public IActionResult OnPost()
         {
-            //DBHelper.setId(calculateID());
-            return RedirectToPage("HomePage");
-            
-        }
+            //1. validate
+            //if (!ModelState.IsValid){return Page();}
+			//2. find the user using the username
+			using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+			{
+				string sql = "SELECT UserId FROM [User] WHERE UserName = @userName;";
+				SqlCommand cmd = new SqlCommand(sql, conn);
+				cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+				if (reader.HasRows)
+				{
+					reader.Read();
+					SignInUser.UserId = Int32.Parse(reader["UserId"].ToString());
+					
+				}
+                //2.5 if no user is found, return to page
+                else { return Page(); }
+			}
+			
 
-        /*public int calculateID()
-        {
-            if (ModelState.IsValid)
-            {
-                using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
-                {
-                    string sql = "SELECT UserId FROM User WHERE UserName = @userName";
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@authorId", SignInUser.UserName);
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        int ID = Int32.Parse(reader["UserId"].ToString());
-                        return ID;
-                    }
-                }
-            }
-            return 0;
-        }*/
-        
-    }
+			//3. redirect using user id that was just found
+
+			return RedirectToPage("HomePage", new { id = SignInUser.UserId });
+
+		}
+
+		
+
+	}
 }

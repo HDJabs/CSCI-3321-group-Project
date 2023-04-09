@@ -3,158 +3,59 @@
 @{
 }
 
-<title>Exercise-Time Goals Page</title>
 
-<h1>This is the Exercise-Time Goals Page.</h1>
 
 <script type="text/javascript">
-	function validateInput(){}
-		/*var isValid = true;
-
-		var runningCB = document.getElementById("running-checkbox");
-		var runningH = document.getElementById("running-hours");
-		var runningM = document.getElementById("running-minutes");
-
-		if(isValid) {
-			document.getElementById("test-span").innerHTML = "valid";
-		}
-		else {
-			document.getElementById("test-span").innerHTML = "not valid";
-		}
+	
+	function validateInput(){
 		
-		if(runningCB.checked){
-			document.getElementById("test-span").innerHTML += ". Goal=  H:" + runningH.value + " M:" + runningM.value + "  goalstring= " + formatString(runningH, runningM);
-			5@Model.runUpdate = "UPDATE ExerciseGoal SET Goal=" + formatString(runningH, runningM) + " WHERE ExerciseId=2, UserId=1;"
+		var isValid = true;
+		var hours = document.getElementById("input-hours").value;
+		var minutes = document.getElementById("input-minutes").value;
+		var hourErr = document.getElementById("hours-error");
+		var minErr = document.getElementById("minutes-error");
+		var spaniard = document.getElementById("spaniard");
+
+		if(hours== 0 && minutes == 0){
+			isValid = false;
+			spaniard.innerHTML = "Cannot set a goal of zero";
 		}
+	
 		return isValid;
 	}
-	*/
-	function formatString(h, m){ //input type of <input type="number">
-		var goalstring ="";
-		if(h.value == ""){
-			goalstring += "00";
-		}
-		else if(h.value < 10 ){
-			goalstring += "0";
-		}
-		goalstring += h.value + ":";
-
-		if(m.value == ""){
-			goalstring +="00";
-		}
-		else if(m.value < 10) {
-			goalstring += "0";
-		}
-		goalstring += m.value;
-		return goalstring;
-	}
-
-	function testValidate(){
-		var isValid = true;
-
-		var runningCB = document.getElementById("running-checkbox");
-		var runningH = document.getElementById("running-hours");
-		var runningM = document.getElementById("running-minutes");
-		
-
-
-		/*
-		var walkingCB = document.getElementById("walking-checkbox");
-		var walkingH = document.getElementById("walking-hours").value;
-		var walkingM = document.getElementById("walking-minutes").value;
-
-		var bikingCB = document.getElementById("biking-checkbox");
-		var bikingH = document.getElementById("biking-hours").value;
-		var bikingM = document.getElementById("biking-minutes").value;
-
-		var skateboardingCB = document.getElementById("skateboarding-checkbox");
-		var skateboardingH = document.getElementById("skateboarding-hours").value;
-		var skateboardingM = document.getElementById("skateboarding-minutes").value;
-		*/
-		
-
-
-		
-		if(isValid) {
-			document.getElementById("test-span").innerHTML = "valid";
-		}
-		else {
-			document.getElementById("test-span").innerHTML = "not valid";
-		}
-		
-		if(runningCB.checked){
-			document.getElementById("test-span").innerHTML += ". Goal= " + formatString(runningH, runningM);
-			
-			document.getElementById("test-span").innerHTML += @Model.runUpdate;
-			
-			@Model.runUpdate = "UPDATE ExerciseGoal SET Goal=\"" + formatString(runningH, runningM) + "\" WHERE ExerciseId=2, UserId=1;";
-		}
-		
-	}
-		
+	
 </script>
 
 <form method="post">
+	<title>Exercise-Time Goals Page</title>
+	
+	@foreach(var obj in Model.Goals){
+	<h1 id="head">
+		Update goal for @obj.ExerciseName 
+	</h1>
+	}
+
 	<table>
+		
 		<tr>
 			<td>
-				<input class="form-check-input" id="running-checkbox" type="checkbox" >
-				<label class="form-check-label" for="running-checkbox">Running</label>
+				<label for="input-hours">Hours:</label>
+				<input class="form-control" asp-for="Hours" type="number" id="input-hours" min="0" max="20" />
 			</td>
 			<td>
-				<label for="running-hours">Hours:</label>
-				<input type="number" id="running-hours" min="0" max="20"/>
+				<span asp-validation-for="Hours" id="hours-error"></span>
+			</td>	
+		
+			<td>
+				<label for="input-minutes">Minutes:</label>
+				<input class="form-control" asp-for="Minutes" type="number" id="input-minutes" min="0" max="59" />
 			</td>
 			<td>
-				<label for="running-minutes">Minutes:</label>
-				<input type="number" id="running-minutes" min="0" max="59" />
+				<span asp-validation-for="Minutes" id ="minutes-error"></span>
 			</td>
 		</tr>
-
-		<tr>
-			<td>
-				<input class="form-check-input" id="walking-checkbox" type="checkbox">
-				<label class="form-check-label" for="walking-checkbox">Walking</label>
-			</td>
-			<td>
-				<label for="walking-hours">Hours:</label>
-				<input type="number" id="walking-hours" min="0" max="20" />
-			</td>
-			<td>
-				<label for="walking-minutes">Minutes:</label>
-				<input type="number" id="walking-minutes" min="0" max="59" />
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<input class="form-check-input" id="biking-checkbox" type="checkbox" >
-				<label class="form-check-label" for="biking-checkbox">Biking</label>
-			</td>
-			<td>
-				<label for="biking-hours">Hours:</label>
-				<input type="number" id="biking-hours" min="0" max="20" />
-			</td>
-			<td>
-				<label for="biking-minutes">Minutes:</label>
-				<input type="number" id="biking-minutes" min="0" max="59" />
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<input class="form-check-input" id="skateboard-checkbox" type="checkbox" >
-				<label class="form-check-label" for="skateboard-checkbox">Skateboarding</label>
-			</td>
-			<td>
-				<label for="skateboarding-hours">Hours:</label>
-				<input type="number" id="skateboarding-hours" min="0" max="20" />
-			</td>
-			<td>
-				<label for="skateboarding-minutes">Minutes:</label>
-				<input type="number" id="skateboarding-minutes" min="0" max="59" />
-			</td>
-		</tr>
+		
+		
 	</table>
 
 	
@@ -166,6 +67,3 @@
 	
 
 </form>
-<button onclick="testValidate()">TEST</button>
-
-<span id="test-span">default</span>

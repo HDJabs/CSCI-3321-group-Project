@@ -1,29 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewExerciseLog.UI.Models
 {
     [BindProperties]
     public class ExerciseGoal
 	{
-		public ExerciseGoal() { }
-		public ExerciseGoal(int userId, int exerciseId, string goal, string total)
-		{
-			UserId = userId;
-			ExerciseId = exerciseId;
-			Goal = goal;
-			Total = total;
-		}
 
-		public int ExerciseGoalId { get; set; }
+        [Key]
+		public int ExerciseGoalId { get; set; } = 0;
 
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 0;
 
-        public int ExerciseId { get; set; }
+        public int ExerciseId { get; set; } = 0;
 
-		public string ExerciseName { get; set; }
+        public string ExerciseName { get; set; } = "error";
 
-        public string Goal { get; set; }
+        public string Goal { get; set; } = "12:34";
 
-        public string Total { get; set;}
+        public string Total { get; set; } = "00:00";
     }
 }
