@@ -30,5 +30,6 @@ DATA NOTES -
 exercise IDs and names: 1, walking. 2, running. 3, skateboarding. 4, biking.
 
 
-
+if Microsoft.Data.SqlClient is giving you error,
+	go to Tools > NuGetPackageManager > Manage NuGet Packages for Solution. download MICROSOFT.Data.SqlClient
 
