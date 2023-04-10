@@ -15,7 +15,9 @@ namespace NewExerciseLog.UI.Pages.Users
 
         private static int userId;
 
-        public string UserName { get; set; }
+        public string UserFirstName { get; set; }
+
+        public string UserLastName { get; set; }
 
         public void OnGet(int id)
         {
@@ -24,6 +26,7 @@ namespace NewExerciseLog.UI.Pages.Users
             string sql = "SELECT * FROM ExerciseGoal " +
                 "INNER JOIN Exercise ON ExerciseGoal.ExerciseId = Exercise.ExerciseId " +
                "WHERE UserId=@UserId";
+
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -46,7 +49,7 @@ namespace NewExerciseLog.UI.Pages.Users
             }
 
 			//find the name
-			sql = "SELECT UserFirstName FROM [User] " +
+			sql = "SELECT UserFirstName, UserLastName FROM [User] " +
 			   "WHERE UserId=@UserId ;";
 			using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
 			{
@@ -57,8 +60,8 @@ namespace NewExerciseLog.UI.Pages.Users
 				if (reader.HasRows)
 				{
                     reader.Read();
-                    UserName = reader["UserFirstName"].ToString();
-					
+                    UserFirstName = reader["UserFirstName"].ToString();
+					UserLastName = reader["UserLastName"].ToString();
 				}
 			}
 		}

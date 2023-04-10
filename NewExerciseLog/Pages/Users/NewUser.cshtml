@@ -45,19 +45,21 @@
             <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
         </div>
 
-        <div>
-            <label for="inputFirstName">First Name:</label>
-            <input type="text" class="form-control" id="inputFirstName" asp-for="NewUser.FirstName" />
-            <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstName">First Name:</label>
+                <input type="text" class="form-control" id="inputFirstName" asp-for="NewUser.FirstName" />
+                <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputLastName" >Last Name:</label>
+                <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
+                <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
+            </div>
 
         </div>
 
-        <div>
-            <label for="inputLastName" >Last Name:</label>
-            <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
-            <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
-
-        </div>
 
         <div>
             <label for="inputPassword" > Password:</label>
@@ -70,7 +72,7 @@
 
 
         <button type="submit" class="btn btn-primary" onclick="return validateInput()">Sign Up!</button>
-        <a href="/UserSignIn" class="btn btn-link">Go Back</a>
+        <a href="UserSignIn" class="btn btn-link">Go Back</a>
 
     </div>
 </form>
