@@ -9,7 +9,12 @@
         var userName = document.getElementById("inputUserName");
         var firstName = document.getElementById("inputFirstName");
         var lastName = document.getElementById("inputLastName");
-        var passwordHash = document.getElementById("inputPassword");
+        var password = document.getElementById("inputPassword");
+
+        document.getElementById("UserNameError").innerHTML = "";
+        document.getElementById("FirstNameError").innerHTML = "";
+        document.getElementById("LastNameError").innerHTML = "";
+        document.getElementById("PasswordError").innerHTML = "";
 
         if (userName.value == "") {
             isValid = false;
@@ -21,9 +26,14 @@
             document.getElementById("FirstNameError").innerHTML = "FirstNameError.";
         }
 
-
-        if(isValid){
-            document.getElementById("PasswordError").innerHTML = "its valid";
+        if (lastName.value == "") {
+            isValid = false;
+            document.getElementById("LastNameError").innerHTML = "FirstNameError.";
+        }
+       
+        if (password.value == "") {
+            isValid = false;
+            document.getElementById("PasswordError").innerHTML = "FirstNameError.";
         }
 
         return isValid;

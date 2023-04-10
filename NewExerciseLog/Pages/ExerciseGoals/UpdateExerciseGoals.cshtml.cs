@@ -16,9 +16,12 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 		public int Hours { get; set; } 
 		[BindProperty]
 		public int Minutes { get; set; }
+
+		public int ID { get; set; }
       
         public void OnGet(int id, int exerciseGoalId)
         {
+			ID= id;
 			LoadGoal(id, exerciseGoalId);
 			Hours = Int32.Parse(Goal.Goal.Substring(0, 2));
 			Minutes = Int32.Parse(Goal.Goal.Substring(3, 2));
