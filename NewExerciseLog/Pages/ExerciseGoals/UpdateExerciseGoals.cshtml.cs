@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NewExerciseLog.UI.Pages.ExerciseGoals
 {
-    public class UpdateExerciseGoalModel : PageModel
+    public class UpdateExerciseGoalsModel : PageModel
     {
         public void OnGet()
         {
