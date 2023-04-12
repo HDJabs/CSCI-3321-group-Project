@@ -2,25 +2,71 @@
 @model NewExerciseLog.UI.Pages.Users.HomePageModel
 @{
 }
+<script>
+	
+</script>
 <title>Home Page</title>
 <h1>This is the Home Page</h1>
+<h2>Welcome, @Model.UserFirstName @Model.UserLastName!</h2>
 
 
-<form class="row g-3">
+
 	
-	<div class="col-12">
-		<a href="/Entries/AddEntry" class="btn btn-primary btn-block">Add Log</a>
-	</div>
-	<div>
-		<a href="/Entries/ViewEntries" class="btn btn-primary btn-block">View Entries</a>
-	</div>
-
-	<div>A BOX that shows the goal statistics</div>
+	<a asp-page="/Entries/AddEntry" asp-route-id=@Model.ID class="btn btn-primary ">Add Log</a>
 
 	<div>
-		<a href="/ExerciseGoals/NewExerciseGoal" class="btn btn-primary btn-block">change goal</a>
+		<table>
+			<tr>
+				<th>Exercise</th>
+				<th>Goal</th>
+				<th>Total</th>
+			</tr>
+			@foreach (var obj in Model.goals)
+			{
+				<form method="post">
+				<tr>
+					<td>@obj.ExerciseName</td>
+					<td>@obj.Goal</td>
+					<td>@obj.Total</td>
+					<td>
+						<a class="btn btn-primary" asp-route-exerciseGoalId=@obj.ExerciseGoalId asp-route-id=@Model.ID asp-page="/ExerciseGoals/UpdateExerciseGoals">
+						<i class="bi bi-pencil-square">Edit</i>
+						</a>
+					</td>
+					<td>
+						<button type="submit" asp-route-exerciseGoalId=@obj.ExerciseGoalId asp-route-id="@Model.ID" class="btn btn-danger"
+							onclick="return confirm('Are you sure you want to delete this goal? The action cannot be undone!')">
+								<i class="bi bi-x-circle mx-2"></i>Delete 
+						</button>
+					</td>
+				</tr>
+				</form>
+			}
+			<tr>
+				<td>
+					<a asp-route-id=@Model.ID asp-page="/ExerciseGoals/New">
+						<i class="bi bi-plus-square-dotted">New Exercise</i>
+					</a>
+				</td>
+			</tr>
+
+		</table>
 	</div>
+
+	<div>
+		<a class="btn btn-primary" asp-route-id=@Model.ID asp-page="/Entries/ViewEntries">View Entries</a>
+	</div>
+
+
 
 	<a href="/Users/UserSignIn" class="btn btn-link"> Sign Out</a>
 	
-</form>
+
+
+<style>
+	table, th, td{
+		border: 1px solid black;
+		padding: 5px;
+	}
+</style>
+

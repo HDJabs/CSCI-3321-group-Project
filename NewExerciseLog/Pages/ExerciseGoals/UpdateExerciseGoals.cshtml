@@ -3,47 +3,67 @@
 @{
 }
 
-namespace NewExerciseLog.UI.Pages.ExerciseGoals
-{
-   public class UpdateExerciseGoalModel
-}
 
-<title>Exercise-Time Goals Page</title>
 
-<h1>This is the Exercise-Time Goals Page.</h1>
-<div style="width:50%;">
-	div>
-	<div style="border-style:solid; border-width:2px; border-color:blue">
-		<h2>Running:</h2>
-		<label for="running-hours">Hours:</label>
-		<input type="number" id="running-hours" min="0" max="20" />
-		<label for="running-minutes">Minutes:</label>
-		<input type="number" id="running-minutes" min="0" max="59" />
-	</div>
-	<div style="border-style:solid; border-width:2px; border-color:blue">
-		<h3>Walking:</h3>
-		<label for="walking-hours">Hours:</label>
-		<input type="number" id="walking-hours" min="0" max="20" />
-		<label for="walking-minutes">Minutes:</label>
-		<input type="number" id="walking-minutes" min="0" max="59" />
-	</div>
-	<div style="border-style:solid; border-width:2px; border-color:blue">
+<script type="text/javascript">
+	
+	function validateInput(){
+		
+		var isValid = true;
+		var hours = document.getElementById("input-hours").value;
+		var minutes = document.getElementById("input-minutes").value;
+		var hourErr = document.getElementById("hours-error");
+		var minErr = document.getElementById("minutes-error");
+		var spaniard = document.getElementById("spaniard");
 
-		<h3>Biking:</h3>
-		<label for="biking-hours">Hours:</label>
-		<input type="number" id="biking-hours" min="0" max="20" />
-		<label for="biking-minutes">Minutes:</label>
-		<input type="number" id="biking-minutes" min="0" max="59" />
-	</div>
-	<div style="border-style:solid; border-width:2px; border-color:blue">
-		<h3>Skateboarding:</h3>
-		<label for="skateboarding-hours">Hours:</label>
-		<input type="number" id="skateboarding-hours" min="0" max="20" />
-		<label for="skateboarding-minutes">Minutes:</label>
-		<input type="number" id="skateboarding-minutes" min="0" max="59" />
-	</div>
-</div>
+		if(hours== 0 && minutes == 0){
+			isValid = false;
+			spaniard.innerHTML = "Cannot set a goal of zero";
+		}
+	
+		return isValid;
+	}
+	
+</script>
 
-<a href="/Users/HomePage" class="btn btn-primary">Update!</a>
+<form method="post">
+	<title>Exercise-Time Goals Page</title>
+	
+	@foreach(var obj in Model.Goals){
+	<h1 id="head">
+		Update goal for @obj.ExerciseName 
+	</h1>
+	}
 
-<a href="/Users/HomePage" class="btn btn-link">back home</a>
+	<table>
+		
+		<tr>
+			<td>
+				<label for="input-hours">Hours:</label>
+				<input class="form-control" asp-for="Hours" type="number" id="input-hours" min="0" max="20" />
+			</td>
+			<td>
+				<span asp-validation-for="Hours" id="hours-error"></span>
+			</td>	
+		
+			<td>
+				<label for="input-minutes">Minutes:</label>
+				<input class="form-control" asp-for="Minutes" type="number" id="input-minutes" min="0" max="59" />
+			</td>
+			<td>
+				<span asp-validation-for="Minutes" id ="minutes-error"></span>
+			</td>
+		</tr>
+		
+		
+	</table>
+
+	
+	<button type="submit" class="btn btn-primary" onclick="return validateInput()">Update!</button>
+
+	<a asp-page="/Users/HomePage" asp-route-id="@Model.ID" class="btn btn-link">back home</a>
+
+	<br />
+	
+
+</form>
