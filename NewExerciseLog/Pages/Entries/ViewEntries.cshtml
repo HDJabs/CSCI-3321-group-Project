@@ -5,47 +5,28 @@
 
 <title>Entries Page</title>
 <h1>This is the Entries Page</h1>
-<a asp-page="AddEntry" class="btn btn-primary">Add Log</a>
-<table id="LogTable"><!--This needs to read from the server instead of being hard coded -->
-	<tr>
-		<th>Date Time</th>
-		<th>Exercise</th>
-		<th>Time(hh:mm)</th>
-	</tr>
-	<tr>
-		<td>3-22-23 1:00 PM</td>
-		<td>Running</td>
-		<td>00:10</td>
-	</tr>
-	<tr>
-		<td>3-22-23 2:00 PM</td>
-		<td>Running</td>
-		<td>00:10</td>
-	</tr>
-	<tr>
-		<td>3-22-23 3:00 PM</td>
-		<td>Running</td>
-		<td>00:07</td>
-	</tr>
-	<tr>
-		<td>3-26-23 12:00 PM</td>
-		<td>Biking</td>
-		<td>01:00</td>
-	</tr>
-	<tr>
-		<td>3-27-23 10:00 AM</td>
-		<td>Skateboarding</td>
-		<td>00:30</td>
-	</tr>
-	<tr>
-		<td>3-27-23 11:00 AM</td>
-		<td>Biking</td>
-		<td>00:30</td>
-	</tr>
 
+
+<table style="width:100%">
+
+	<tr>
+		<th style ="width:12%">Exercise</th>
+		<th style="width:12%">hours</th>
+		<th style="width:12%">minutes</th>
+		<th style="width:12%">date</th>
+	</tr>
+	@foreach(var obj in Model.Entries)
+	{
+		<tr>
+			<td>@obj.ExerciseName</td>
+			<td>@obj.HoursExercised</td>
+			<td>@obj.MinutesExercised</td>
+			<td>@obj.EntryDate</td>
+		</tr>
+	}
 </table>
 
-<a href="/Users/HomePage" class="btn btn-link"> Go Home</a>
+<a class="btn btn-primary"  asp-route-id=@Model.ID asp-page="/Users/HomePage"> Go Home</a>
 
 <script>
     function addLogToTable(log) {
@@ -75,5 +56,9 @@
 <style>
 	table, th, td {
 		border: 1px solid black;
+	}
+
+	table tr {
+		padding: 20px;
 	}
 </style>

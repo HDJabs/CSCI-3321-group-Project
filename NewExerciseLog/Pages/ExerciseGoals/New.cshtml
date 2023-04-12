@@ -1,0 +1,21 @@
+﻿@page
+@model NewExerciseLog.UI.Pages.ExerciseGoals.NewModel
+@{
+}
+
+<h1>Select a New Exercise</h1>
+
+<form method="post">
+	@foreach(var obj in Model.exercises){
+		<div>
+			<button type="submit" class="btn btn-primary" asp-route-id=@Model.ID asp-route-exerciseId=@obj.ExerciseId>
+				<i class="bi bi-plus-square-dotted"></i>
+			</button>
+			<h>@obj.ExerciseName</h>
+		</div>
+	}
+</form>
+<br />
+<a asp-route-id=@Model.ID asp-page="/Users/HomePage">HomePage</a>
+
+
