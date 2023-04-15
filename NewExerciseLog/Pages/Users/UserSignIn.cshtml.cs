@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
 using System.Reflection.Metadata;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NewExerciseLog.UI.Pages.Users
@@ -41,13 +42,14 @@ namespace NewExerciseLog.UI.Pages.Users
                 cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                function verifyPassword()
+               Function verifyPassword()
                 {
+                    var pw = SignInUser.UserId("pswd").value;
+                }
+                if (pw.length < 8)
+                {
+                    SignInUser.UserId("message") = "password length must be at least 8 characters";
 
-                    if (reader.HasRows)
-                {
-                    reader.Read();
-                    SignInUser.UserId = Int32.Parse(reader["UserId"].ToString());
 
                 }
                 //2.5 if no user is found, return to page
