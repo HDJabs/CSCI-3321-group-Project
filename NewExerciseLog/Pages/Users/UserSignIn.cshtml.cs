@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
 using System.Reflection.Metadata;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NewExerciseLog.UI.Pages.Users
 {
@@ -33,11 +34,33 @@ namespace NewExerciseLog.UI.Pages.Users
                 //2.5 if no user is found, return to page
                 else { return Page(); }
 			}
-			
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                string sql = "SELECT UserId FROM [User] WHERE UserName = @userName;";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                function verifyPassword()
+                {
 
-			//3. redirect using user id that was just found
+                    if (reader.HasRows)
+                {
+                    reader.Read();
+                    SignInUser.UserId = Int32.Parse(reader["UserId"].ToString());
 
-			return RedirectToPage("HomePage", new { id = SignInUser.UserId });
+                }
+                //2.5 if no user is found, return to page
+                else { return Page(); }
+            }
+
+            //this is were i write my code
+            // this is my code 
+            // anything with names(username or sign in user) subject to change. functions names that we did not write stays the same
+            //select user password 
+            //3. redirect using user id that was just found
+
+            return RedirectToPage("HomePage", new { id = SignInUser.UserId });
 
 		}
 
