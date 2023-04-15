@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
 using NewExerciseLog.UI.Pages.Users;
+using System.Collections.Generic;
 
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -79,6 +80,8 @@ namespace NewExerciseLog.UI.Pages.Entries
             //find exercise goalID for NewEntry using exercise id and user id
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
+                
+                
                 string sql = "SELECT ExerciseGoalId FROM ExerciseGoal " +
                     "WHERE UserId = @userId AND ExerciseId = @exerciseId;";
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -116,11 +119,42 @@ namespace NewExerciseLog.UI.Pages.Entries
                 cmd.ExecuteNonQuery();
             }
 
+            //update goals
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                //get old total
+                string sql1 = "SELECT Total FROM ExerciseGoal WHERE USERID = @userId AND ExerciseId = @exerciseId;";
+                SqlCommand cmd1 = new SqlCommand(sql1, conn);
+                cmd1.Parameters.AddWithValue("@userId", id);
+                cmd1.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
+
+                //update total
+                string sql2 = "UPDATE ExerciseGoal SET Total = @newTotal WHERE USERID = @userId AND ExerciseId = @exerciseId;";
+                SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                cmd2.Parameters.AddWithValue("@userId", id);
+                cmd2.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
 
 
+                conn.Open();
+                SqlDataReader reader = cmd1.ExecuteReader();
+                String[] hourMinute = (reader.HasRows && reader.Read() ? ((String)reader["Total"]).Split(":") :new String[2]{ "0", "0" });
+                conn.Close();
+                
+                int[] intHoutMinute = { int.Parse(hourMinute[0]), int.Parse(hourMinute[1])};
+                intHoutMinute[1] += NewEntry.MinutesExercised;
+                intHoutMinute[0] += NewEntry.HoursExercised + (int)Math.Floor(intHoutMinute[1] / 60.0);
+                intHoutMinute[1] = intHoutMinute[1] % 60;
 
-            //if (!ModelState.IsValid){
-            return RedirectToPage("/Users/HomePage", new { id = id });
+                cmd2.Parameters.AddWithValue("@newTotal", intHoutMinute[0] + ":" + intHoutMinute[1]);
+
+                conn.Open();
+                cmd2.ExecuteNonQuery();
+                conn.Close();
+            }
+
+
+                //if (!ModelState.IsValid){
+                return RedirectToPage("/Users/HomePage", new { id = id });
             //}
             //return RedirectToPage("/Users/HomePageModel", new {id = copyUser.UserId});
         }
