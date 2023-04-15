@@ -42,16 +42,19 @@ namespace NewExerciseLog.UI.Pages.Users
                 cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-               Function verifyPassword()
+                Function verifyPassword()
                 {
                     var pw = SignInUser.UserId("pswd").value;
                 }
                 if (pw.length < 8)
                 {
                     SignInUser.UserId("message") = "password length must be at least 8 characters";
-
-
+                    return false;
                 }
+                else
+                {
+                    "password is correct";
+  
                 //2.5 if no user is found, return to page
                 else { return Page(); }
             }
