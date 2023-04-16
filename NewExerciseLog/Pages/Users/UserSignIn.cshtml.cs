@@ -68,10 +68,10 @@ namespace NewExerciseLog.UI.Pages.Users
   
                   //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
                 }
-                if (pw.length < 8)
+                if (reader.HasRows)
                 {
-                    //\\we never set this as a rule. also this function doesnt work. This is not how error messages work, we can skip the error message for now.
-                    return false; //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
+
+                RedirectToPage("HomePage", new { id = SignInUser.UserId });   //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
                 }
                  //\\2 else statements??
                 {
