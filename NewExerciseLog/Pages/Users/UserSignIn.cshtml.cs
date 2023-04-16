@@ -64,18 +64,18 @@ namespace NewExerciseLog.UI.Pages.Users
                 cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                Function verifyPassword() //\\we dont need to make a new function, also it is never called anyways. delete this
-                {
-                    var pw = SignInUser.UserId("pswd").value; //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
+                 //\\we dont need to make a new function, also it is never called anyways. delete this
+  
+                  //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
                 }
                 if (pw.length < 8)
                 {
-                    SignInUser.UserId("message") = "password length must be at least 8 characters"; //\\we never set this as a rule. also this function doesnt work. This is not how error messages work, we can skip the error message for now.
+                    //\\we never set this as a rule. also this function doesnt work. This is not how error messages work, we can skip the error message for now.
                     return false; //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
                 }
-                else //\\2 else statements??
+                 //\\2 else statements??
                 {
-                    "password is correct"; //\\this doesnt do anything. where is it pointing to?
+ //\\this doesnt do anything. where is it pointing to?
 
                 //2 
                 else { return Page(); } //\\this line of code is reached if the username entered by the user does not match any usernames we have on file. the code for this was already layed out. you were supposed to work bellow this.
