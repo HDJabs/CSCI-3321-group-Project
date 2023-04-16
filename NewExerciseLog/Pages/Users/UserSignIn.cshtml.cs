@@ -65,18 +65,18 @@ namespace NewExerciseLog.UI.Pages.Users
                 cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                 //\\we dont need to make a new function, also it is never called anyways. delete this
-  
-                  //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
-                }
+                //\\we dont need to make a new function, also it is never called anyways. delete this
+
+                //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
+            
             if (reader.HasRows)
-                {
+            {
                 reader.Read();
                 SignInUser.UserId = Int32.Parse(reader["UserId"].ToString());
-                   //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
-                }
+                //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
+            }
             //\\2 else statements??
-            { 
+            
  //\\this doesnt do anything. where is it pointing to?
 
                 //2 
