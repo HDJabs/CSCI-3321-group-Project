@@ -60,7 +60,7 @@ namespace NewExerciseLog.UI.Pages.Users
 
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                string sql = "SELECT UserId FROM [User] WHERE UserName = @userName;"; //\\you have to SELECT the password, to compare it. compare it using "reader["UserId"].ToString()" AFTER you check that reader.HasRows
+                string sql = "SELECT UserPasswordHash FROM [User] WHERE UserName = @userName;"; //\\you have to SELECT the password, to compare it. compare it using "reader["UserId"].ToString()" AFTER you check that reader.HasRows
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userName", SignInUser.UserName);
                 conn.Open();
@@ -69,19 +69,18 @@ namespace NewExerciseLog.UI.Pages.Users
 
                 //\\ what is '("pswd").value'? UserID only has a get and set method, which you dont have to call explicitely. making a variable for this is not neccesary, as we litterally only use it once
             
-            if (reader.HasRows)
-            {
-                reader.Read();
-                SignInUser.UserId = Int32.Parse(reader["UserId"].ToString());
-                //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
-            }
-            //\\2 else statements??
-            
- //\\this doesnt do anything. where is it pointing to?
-
-                //2 
-                else { return Page(); } //\\this line of code is reached if the username entered by the user does not match any usernames we have on file. the code for this was already layed out. you were supposed to work bellow this.
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    if ( !reader["UserPasswordHash"].ToString().Equals(SignInUser.UserPasswordHash))
+                    {
+                        return Page();
+                    }
+                    //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).
                 }
+
+              //\\this line of code is reached if the username entered by the user does not match any usernames we have on file. the code for this was already layed out. you were supposed to work bellow this.
+            }
 
 
 
@@ -94,11 +93,8 @@ namespace NewExerciseLog.UI.Pages.Users
 
                 //3. redirect using user id that was just found
 
-                return RedirectToPage("HomePage", new { id = SignInUser.UserId });//the last line of code //\\this line of code is reached IF the password entered by the user MATCHES the password we have on file.
-
-            }
-
-
+            return RedirectToPage("HomePage", new { id = SignInUser.UserId });//the last line of code //\\this line of code is reached IF the password entered by the user MATCHES the password we have on file.
 
         }
     }
+}
