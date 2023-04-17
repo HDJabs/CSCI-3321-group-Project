@@ -13,6 +13,9 @@ namespace NewExerciseLog.UI.Pages.Users
     {
         [BindProperty]
         public User SignInUser { get; set; } = new User();
+
+        public string ServerSidePasswordError { get; set; } = new string("");
+
         public void OnGet()
         {
         }
@@ -74,6 +77,7 @@ namespace NewExerciseLog.UI.Pages.Users
                     reader.Read();
                     if ( !reader["UserPasswordHash"].ToString().Equals(SignInUser.UserPasswordHash))
                     {
+                        ServerSidePasswordError = "invalid password";
                         return Page();
                     }
                     //\\OnPost is not asking for a boolean, it is asking for a IActionResult - which basically just means pages ( like Page() or RedirectToPage("HomePage", new { id = SignInUser.UserId }) ).

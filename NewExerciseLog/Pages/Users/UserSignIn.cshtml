@@ -43,7 +43,7 @@
         <div class="sign_in_box_row">
             <label for="inputPassword">Password:</label>
             <input type="text" class="form-control" id="inputPassword" asp-for="SignInUser.UserPasswordHash" />  
-            <span asp-validation-for="SignInUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
+            <span asp-validation-for="SignInUser.UserPasswordHash" class="text-danger" id="PasswordError">@Model.ServerSidePasswordError</span>
         </div>
 
     
