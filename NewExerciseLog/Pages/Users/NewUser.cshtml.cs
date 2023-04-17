@@ -12,7 +12,7 @@ namespace NewExerciseLog.UI.Pages.Users
         [BindProperty]
         public User NewUser { get; set; } = new User();
         
-        public String  ServerSideUsernameError { get; set; } = new String("");
+        public string  ServerSideUsernameError { get; set; } = new string("");
 
         public void OnGet()
         {
