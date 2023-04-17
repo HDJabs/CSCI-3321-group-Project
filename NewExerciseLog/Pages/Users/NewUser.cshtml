@@ -5,7 +5,10 @@
 
 <script type="text/javascript">
 
+
     function validateInput() {
+
+
         var isValid = true;
         var userName = document.getElementById("inputUserName");
         var firstName = document.getElementById("inputFirstName");
@@ -16,6 +19,8 @@
         document.getElementById("FirstNameError").innerHTML = "";
         document.getElementById("LastNameError").innerHTML = "";
         document.getElementById("PasswordError").innerHTML = "";
+
+
 
         if (userName.value == "") {
             isValid = false;
@@ -53,7 +58,7 @@
         <div>
             <label for="inputUserName">Username:</label>
             <input type="text" class="form-control" id="inputUserName" asp-for="NewUser.UserName" />
-            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
+            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError">@Model.ServerSideUsernameError</span> 
           
         </div>
 

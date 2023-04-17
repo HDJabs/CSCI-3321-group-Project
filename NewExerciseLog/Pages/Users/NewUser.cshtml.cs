@@ -11,6 +11,9 @@ namespace NewExerciseLog.UI.Pages.Users
     {
         [BindProperty]
         public User NewUser { get; set; } = new User();
+        
+        public String  ServerSideUsernameError { get; set; } = new String("");
+
         public void OnGet()
         {
         }
@@ -40,8 +43,8 @@ namespace NewExerciseLog.UI.Pages.Users
                     if (reader.HasRows)
                     {
                         conn.Close();
-                        //p .getElementById("UserNameError").innerHTML = "UserNameError.";
-                        return Page();
+                        ServerSideUsernameError = "This UserName is already taken";
+                        return Page(); //if username is taken
                     }
                     conn.Close();
 
@@ -87,6 +90,15 @@ namespace NewExerciseLog.UI.Pages.Users
             }
             return Page();
 
+        }
+
+        public Boolean Test()
+        {
+            Boolean valid = true;
+
+
+
+            return valid;
         }
     }
 }
