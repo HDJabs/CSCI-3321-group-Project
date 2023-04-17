@@ -30,13 +30,13 @@ namespace NewExerciseLog.UI.Pages.Entries
         {
             //find the user using the id
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString())) {
-                string sql = "SELECT * FROM [User] WHERE UserId = @userId;";
+                string sql = "SELECT UserFirstName, UserName, UserId FROM [User] WHERE UserId = @userId;";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userId", id);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows){
-                    reader.Read();
+                if (reader.HasRows && reader.Read())
+                { 
                     currentUser.FirstName = reader["UserFirstName"].ToString();
                     currentUser.UserName = reader["UserName"].ToString();
                     currentUser.UserId = (int)reader["UserId"];
@@ -56,7 +56,6 @@ namespace NewExerciseLog.UI.Pages.Entries
                 cmd.Parameters.AddWithValue("@userId", id);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                Exercise exercise;
                 if (reader.HasRows)
                 {
                     while(reader.Read()) {
@@ -89,7 +88,6 @@ namespace NewExerciseLog.UI.Pages.Entries
                 cmd.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                Exercise exercise;
                 if (reader.HasRows)
                 {
                     while (reader.Read())
