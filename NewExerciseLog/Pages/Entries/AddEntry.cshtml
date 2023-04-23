@@ -5,6 +5,7 @@
 <script type="text/javascript">
     function validateInput(){
         var isValid = true;
+
         var minutes = document.getElementById("input-minutes");
         var hours = document.getElementById("input-hours");
         var exercise = document.getElementById("input-exercise").value;
@@ -21,6 +22,7 @@
 
        
 
+
         return isValid;
     }    
 
@@ -31,23 +33,24 @@
 <h1>This is the Add Entry page.</h1>
 
 <form method="post">
-    <span id="test"></span>
-    <div style="width:50%;">
+    <div id="div1">
         <div>
+
             <label for="input-exercise">Exercise:</label>
             <select name="exercise" id="input-exercise" asp-items=@Model.exercises asp-for="exeId" onchange="updateDate()" >
                 
                 
+
             </select>
         </div>
 
-        <div style="width:40%; float: left;">
+        <div id="div2">
             <label for="input-hours">Hours:</label>
             <input type="number" class="form-control" id="input-hours" asp-for="NewEntry.HoursExercised" min=0 max=60/>
             <span asp-validation-for="NewEntry.HoursExercised"></span>
         </div>
 
-        <div style="margin-left:50%; width:40%">
+        <div id="div3">
             <label for="input-minutes">Minutes:</label>
             <input type="number" class="form-control" id="input-minutes" asp-for="@Model.NewEntry.MinutesExercised" min=0 max=60/>
             <span asp-validation-for="NewEntry.MinutesExercised"></span>
@@ -62,6 +65,7 @@
         <br />
         
         
+
         <!--update these ^^^^-->
         <!--vv updated vv-->
         <button type="submit" asp-route-id=@Model.currentUser.UserId class="btn btn-primary" onclick="return validateInput()">Add Entry!</button>

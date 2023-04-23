@@ -11,7 +11,9 @@ namespace NewExerciseLog.UI.Models
         [Required(ErrorMessage = "user ID is required")]
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
+        
         public string UserName { get; set; } = String.Empty;
+        
 
 		public string UserPasswordHash { get; set; } = String.Empty;
   

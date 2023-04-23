@@ -4,7 +4,11 @@
 }
 
 <script type="text/javascript">
+
+
     function validateInput() {
+
+
         var isValid = true;
         var userName = document.getElementById("inputUserName");
         var firstName = document.getElementById("inputFirstName");
@@ -16,11 +20,13 @@
         document.getElementById("LastNameError").innerHTML = "";
         document.getElementById("PasswordError").innerHTML = "";
 
+
+
         if (userName.value == "") {
             isValid = false;
             document.getElementById("UserNameError").innerHTML = "UserNameError.";
         }
-
+      
         if (firstName.value == "") {
             isValid = false;
             document.getElementById("FirstNameError").innerHTML = "FirstNameError.";
@@ -30,7 +36,7 @@
             isValid = false;
             document.getElementById("LastNameError").innerHTML = "FirstNameError.";
         }
-       
+
         if (password.value == "") {
             isValid = false;
             document.getElementById("PasswordError").innerHTML = "FirstNameError.";
@@ -50,9 +56,10 @@
     <div class="sign_in_box" style="width:50%;">
 
         <div>
-            <label for="inputUserName" >Username:</label>
+            <label for="inputUserName">Username:</label>
             <input type="text" class="form-control" id="inputUserName" asp-for="NewUser.UserName" />
-            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError"></span>
+            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError">@Model.ServerSideUsernameError</span> 
+          
         </div>
 
         <div class="form-row">
@@ -63,7 +70,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                <label for="inputLastName" >Last Name:</label>
+                <label for="inputLastName">Last Name:</label>
                 <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
                 <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
             </div>
@@ -72,7 +79,7 @@
 
 
         <div>
-            <label for="inputPassword" > Password:</label>
+            <label for="inputPassword"> Password:</label>
             <input type="text" class="form-control" id="inputPassword" asp-for="NewUser.UserPasswordHash" />
             <span asp-validation-for="NewUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
 

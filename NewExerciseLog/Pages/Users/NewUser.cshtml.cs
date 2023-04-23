@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
+using System.Reflection.Metadata;
 
 namespace NewExerciseLog.UI.Pages.Users
 {
@@ -10,9 +11,14 @@ namespace NewExerciseLog.UI.Pages.Users
     {
         [BindProperty]
         public User NewUser { get; set; } = new User();
+        
+        public string  ServerSideUsernameError { get; set; } = new string("");
+
         public void OnGet()
         {
         }
+
+   
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
@@ -28,6 +34,21 @@ namespace NewExerciseLog.UI.Pages.Users
                              */
                 using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
                 {
+                    String sqlGetUsername = "SELECT UserName FROM [User] WHERE UserName = @userName;";
+                    SqlCommand cmdGetUsername = new SqlCommand(sqlGetUsername, conn);
+                    cmdGetUsername.Parameters.AddWithValue("@userName", NewUser.UserName);
+
+                    conn.Open();
+                    SqlDataReader reader = cmdGetUsername.ExecuteReader();     
+                    if (reader.HasRows)
+                    {
+                        conn.Close();
+                        ServerSideUsernameError = "This UserName is already taken";
+                        return Page(); //if username is taken
+                    }
+                    conn.Close();
+
+
                     // step 1
                     // step 2
                     string sql = "INSERT INTO [User] (UserName, UserFirstName, UserLastName, UserPasswordHash, Salt, DateJoined, LastLogIn) " +
@@ -42,12 +63,13 @@ namespace NewExerciseLog.UI.Pages.Users
                     cmd.Parameters.AddWithValue("@salt", "salt");
                     cmd.Parameters.AddWithValue("@joined", date);
                     cmd.Parameters.AddWithValue("@lastLog", date);
-					conn.Open();
-					cmd.ExecuteNonQuery();
-				}
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                }
 
 
-                
+
 
                 //now find the ID 
                 int newID;
@@ -65,9 +87,18 @@ namespace NewExerciseLog.UI.Pages.Users
                         return RedirectToPage("HomePage", new { id = newID });
                     }
                 }
-			}
+            }
             return Page();
-            
+
+        }
+
+        public Boolean Test()
+        {
+            Boolean valid = true;
+
+
+
+            return valid;
         }
     }
 }
