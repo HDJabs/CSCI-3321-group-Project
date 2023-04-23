@@ -6,7 +6,9 @@
 <title>Entries Page</title>
 <h1>This is the Entries Page</h1>
 
-<table style="width:100%">
+
+<table id="entries-table">
+
 	<tr>
 		<th style ="width:12%">Exercise</th>
 		<th style="width:12%">hours</th>
@@ -24,14 +26,30 @@
 	}
 </table>
 
+
 <a class="btn btn-primary"  asp-route-id=@Model.ID asp-page="/Users/HomePage"> Go Home</a>
 
-<style>
-	table, th, td {
-		border: 1px solid black;
-	}
+<script>
+    function addLogToTable(log) {
+        const table = document.getElementById("logTable");
+        let row = table.insertRow();
 
-	table tr {
-		padding: 20px;
+        let dateTime = row.insertCell(0);
+        dateTime.innerHTML = log.Date;
+
+        let exercise = row.insertCell(1);
+        exercise.innerHTML = log.Exercise;
+
+        let Durration = row.insertCell(2);
+        Durration.innerHTML = log.Durration;
+    }
+
+	/*var log =
+	{
+		Date: ,
+		Exercise: ,
+		Durration: ,
+		Goal: 
 	}
-</style>
+	addLogToTable(log);*/
+</script>
