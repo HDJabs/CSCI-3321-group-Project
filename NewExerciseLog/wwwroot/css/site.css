@@ -46,7 +46,7 @@ body {
     style ="width:100%"
 }
 
-#goal-table th, td {
+#goal-table, #goal-table th, td {
     border: 1px solid black;
     padding: 5px;
 }
