@@ -142,8 +142,9 @@ namespace NewExerciseLog.UI.Pages.Entries
                 intHoutMinute[1] += NewEntry.MinutesExercised;
                 intHoutMinute[0] += NewEntry.HoursExercised + (int)Math.Floor(intHoutMinute[1] / 60.0);
                 intHoutMinute[1] = intHoutMinute[1] % 60;
+                intHoutMinute[0] = intHoutMinute[0] % 100;
 
-                cmd2.Parameters.AddWithValue("@newTotal", intHoutMinute[0] + ":" + intHoutMinute[1]);
+                cmd2.Parameters.AddWithValue("@newTotal", (intHoutMinute[0] < 10 ? "0" + intHoutMinute[0] : intHoutMinute[0]) + ":" + (intHoutMinute[1] < 10 ? "0" + intHoutMinute[1] : intHoutMinute[1]));
 
                 conn.Open();
                 cmd2.ExecuteNonQuery();
