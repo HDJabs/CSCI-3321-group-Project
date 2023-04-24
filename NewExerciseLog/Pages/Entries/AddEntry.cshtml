@@ -1,6 +1,7 @@
 ﻿@page
 @model NewExerciseLog.UI.Pages.Entries.AddEntryModel
 @{
+    Layout = "/Pages/Shared/Signed-in.cshtml";
 }
 <script type="text/javascript">
     function validateInput(){
@@ -10,15 +11,13 @@
         var hours = document.getElementById("input-hours");
         var exercise = document.getElementById("input-exercise").value;
         var stringDate = document.getElementById("input-date").toString();
-        document.getElementById("test").innerHTML = isValid.toString();
-        document.getElementById("test").innerHTML = document.getElementById("test").innerHTML + minutes.toString();
+
 
         if(hours.value == 0 && minutes.value == 0){
             isValid = false;
-            document.getElementById("test").innerHTML = "Cannot have an entry of zero";
+            document.getElementById("Error").innerHTML = "Cannot have an entry of zero";
         }
 
-        var select = document.getElementById("input-exercise").value
 
        
 
@@ -30,45 +29,49 @@
 
 <title>Add Entry Page</title>
 
-<h1>This is the Add Entry page.</h1>
+<h1>Add an Entry.</h1>
+<div class="background-container">
+    <div class="content-section">
+        <form method="post">
+            <div id="div1" class="content_box">
+                <div>
 
-<form method="post">
-    <div id="div1">
-        <div>
-
-            <label for="input-exercise">Exercise:</label>
-            <select name="exercise" id="input-exercise" asp-items=@Model.exercises asp-for="exeId" onchange="updateDate()" >
+                    <label for="input-exercise">Exercise:</label>
+                    <select name="exercise" id="input-exercise" asp-items=@Model.exercises asp-for="exeId" onchange="updateDate()" >
                 
                 
 
-            </select>
-        </div>
+                    </select>
+                </div>
 
-        <div id="div2">
-            <label for="input-hours">Hours:</label>
-            <input type="number" class="form-control" id="input-hours" asp-for="NewEntry.HoursExercised" min=0 max=60/>
-            <span asp-validation-for="NewEntry.HoursExercised"></span>
-        </div>
+                <div id="div2">
+                    <label for="input-hours">Hours:</label>
+                    <input type="number" class="form-control" id="input-hours" value="0" asp-for="NewEntry.HoursExercised" min=0 max=60/>
+                    <span asp-validation-for="NewEntry.HoursExercised"></span>
+                </div>
 
-        <div id="div3">
-            <label for="input-minutes">Minutes:</label>
-            <input type="number" class="form-control" id="input-minutes" asp-for="@Model.NewEntry.MinutesExercised" min=0 max=60/>
-            <span asp-validation-for="NewEntry.MinutesExercised"></span>
-        </div>
+                <div id="div3">
+                    <label for="input-minutes">Minutes:</label>
+                    <input type="number" class="form-control" id="input-minutes" value="0" asp-for="@Model.NewEntry.MinutesExercised" min=0 max=60/>
+                    <span asp-validation-for="NewEntry.MinutesExercised"></span>
+                </div>
 
-        <div>                                                                                         <!-- from the forums on html syntax         from the error response    -->
-            <label for="input-date">Date:</label>                                                            <!-- min="2011-02-20T20:20"       max="12/31/9999 11:59:59 PM"       -->                    
-            <input type="datetime-local" class="form-control" id="input-date" asp-for="@Model.NewEntry.EntryDate" min="2011-02-20T20:20"   max="2032-02-20T20:20" value="2023-04-09T12:30"/>
-            <span asp-validation-for="NewEntry.EntryDate"></span>
-        </div>
+                <div>                                                                                         <!-- from the forums on html syntax         from the error response    -->
+                    <label for="input-date">Date:</label>                                                            <!-- min="2011-02-20T20:20"       max="12/31/9999 11:59:59 PM"       -->                    
+                    <input type="datetime-local" class="form-control" id="input-date" asp-for="@Model.NewEntry.EntryDate" min="2011-02-20T20:20"   max="2032-02-20T20:20" value="2023-04-09T12:30"/>
+                    <span asp-validation-for="NewEntry.EntryDate"></span>
+                </div>
 
-        <br />
+                <br />
         
         
 
-        <!--update these ^^^^-->
-        <!--vv updated vv-->
-        <button type="submit" asp-route-id=@Model.currentUser.UserId class="btn btn-primary" onclick="return validateInput()">Add Entry!</button>
-        <a asp-page="/Users/HomePage" asp-route-id=@Model.currentUser.UserId class="btn btn-link"> Go Home</a>
+                <!--update these ^^^^-->
+                <!--vv updated vv-->
+                <span class="text-danger" id="Error"> </span>
+                <button type="submit" asp-route-id=@Model.currentUser.UserId class="btn btn-primary" onclick="return validateInput()">Add Entry!</button>
+                <a asp-page="/Users/HomePage" asp-route-id=@Model.currentUser.UserId class="btn btn-link"> Go Home</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>

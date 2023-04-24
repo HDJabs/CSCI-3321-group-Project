@@ -30,11 +30,7 @@ namespace NewExerciseLog.UI.Pages.Entries
         {
             //find the user using the id
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString())) {
-                string sql = "SELECT UserFirstName, UserName, UserId FROM [User] WHERE UserId = @userId;";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@userId", id);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
+                string sql = "SELECT UserFirstName, UserName, UserId FROM [User] WHERE UserId = @userId;"; SqlCommand cmd = new SqlCommand(sql, conn); cmd.Parameters.AddWithValue("@userId", id); conn.Open(); SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows && reader.Read())
                 { 
                     currentUser.FirstName = reader["UserFirstName"].ToString();
@@ -71,10 +67,7 @@ namespace NewExerciseLog.UI.Pages.Entries
 
         public IActionResult OnPost(int id, int exerciseId)
         {
-
             NewEntry.ExerciseId = Int32.Parse(Request.Form["exercise"]);
-
-            
 
             //find exercise goalID for NewEntry using exercise id and user id
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
@@ -96,8 +89,6 @@ namespace NewExerciseLog.UI.Pages.Entries
                     }
                 }
             }
-
-
 
             //insert
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
@@ -125,36 +116,37 @@ namespace NewExerciseLog.UI.Pages.Entries
                 SqlCommand cmd1 = new SqlCommand(sql1, conn);
                 cmd1.Parameters.AddWithValue("@userId", id);
                 cmd1.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
+                conn.Open();
+                SqlDataReader reader = cmd1.ExecuteReader();
+                reader.Read();
+                String total = reader["Total"].ToString();
+                conn.Close();
+                //                 (               #hours * 60             ) + (         #minutes            )
+                int totalMinutes = (Int32.Parse(total.Substring(0, 2)) * 60) + Int32.Parse(total.Substring(3, 2));
+                int newEntryMinutes = (60 * NewEntry.HoursExercised) + NewEntry.MinutesExercised;
+                totalMinutes += newEntryMinutes;
+                int minutes = totalMinutes % 60;
+                int hours = (totalMinutes - minutes) / 60;
+                String strHours = "";
+                String strMinutes = "";
+                if (hours < 10) { strHours += "0"; }
+                strHours += hours.ToString();
+                if (minutes < 10) { strMinutes += "0"; }
+                strMinutes += minutes.ToString();
+
 
                 //update total
                 string sql2 = "UPDATE ExerciseGoal SET Total = @newTotal WHERE USERID = @userId AND ExerciseId = @exerciseId;";
                 SqlCommand cmd2 = new SqlCommand(sql2, conn);
                 cmd2.Parameters.AddWithValue("@userId", id);
                 cmd2.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
-
-
-                conn.Open();
-                SqlDataReader reader = cmd1.ExecuteReader();
-                String[] hourMinute = (reader.HasRows && reader.Read() ? ((String)reader["Total"]).Split(":") :new String[2]{ "0", "0" });
-                conn.Close();
-                
-                int[] intHoutMinute = { int.Parse(hourMinute[0]), int.Parse(hourMinute[1])};
-                intHoutMinute[1] += NewEntry.MinutesExercised;
-                intHoutMinute[0] += NewEntry.HoursExercised + (int)Math.Floor(intHoutMinute[1] / 60.0);
-                intHoutMinute[1] = intHoutMinute[1] % 60;
-
-                cmd2.Parameters.AddWithValue("@newTotal", intHoutMinute[0] + ":" + intHoutMinute[1]);
-
+                cmd2.Parameters.AddWithValue("@newTotal", strHours + ":" + strMinutes);
                 conn.Open();
                 cmd2.ExecuteNonQuery();
                 conn.Close();
             }
 
-
-                //if (!ModelState.IsValid){
-                return RedirectToPage("/Users/HomePage", new { id = id });
-            //}
-            //return RedirectToPage("/Users/HomePageModel", new {id = copyUser.UserId});
+            return RedirectToPage("/Users/HomePage", new { id = id });
         }
     }
 }

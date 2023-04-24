@@ -50,46 +50,50 @@
 
 <title>Sign Up Page</title>
 
-<h1>This is the Sign Up page.</h1>
+<h1>Sign Up</h1>
+<div class="background-container">
+    <div class="content-section">
 
-<form method="post">
-    <div class="sign_in_box" style="width:50%;">
+        <form method="post">
+            <div class="content_box">
 
-        <div>
-            <label for="inputUserName">Username:</label>
-            <input type="text" class="form-control" id="inputUserName" asp-for="NewUser.UserName" />
-            <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError">@Model.ServerSideUsernameError</span> 
+                <div>
+                    <label for="inputUserName">Username:</label>
+                    <input type="text" class="form-control" id="inputUserName" asp-for="NewUser.UserName" />
+                    <span asp-validation-for="NewUser.UserName" class="text-danger" id="UserNameError">@Model.ServerSideUsernameError</span> 
           
-        </div>
+                </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputFirstName">First Name:</label>
-                <input type="text" class="form-control" id="inputFirstName" asp-for="NewUser.FirstName" />
-                <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFirstName">First Name:</label>
+                        <input type="text" class="form-control" id="inputFirstName" asp-for="NewUser.FirstName" />
+                        <span asp-validation-for="NewUser.FirstName" class="text-danger" id="FirstNameError"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputLastName">Last Name:</label>
+                        <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
+                        <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <label for="inputPassword"> Password:</label>
+                    <input type="text" class="form-control" id="inputPassword" asp-for="NewUser.UserPasswordHash" />
+                    <span asp-validation-for="NewUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
+
+                </div>
+
+                <!--check out getbootstrap.com/docs/5.3/forms/layout/   to maybe get a better layout going-->
+
+
+                <button type="submit" class="btn btn-primary" onclick="return validateInput()">Sign Up!</button>
+                <a href="UserSignIn" class="btn btn-link">Go Back</a>
+
             </div>
-
-            <div class="form-group col-md-6">
-                <label for="inputLastName">Last Name:</label>
-                <input type="text" class="form-control" id="inputLastName" asp-for="NewUser.LastName" />
-                <span asp-validation-for="NewUser.LastName" class="text-danger" id="LastNameError"></span>
-            </div>
-
-        </div>
-
-
-        <div>
-            <label for="inputPassword"> Password:</label>
-            <input type="text" class="form-control" id="inputPassword" asp-for="NewUser.UserPasswordHash" />
-            <span asp-validation-for="NewUser.UserPasswordHash" class="text-danger" id="PasswordError"></span>
-
-        </div>
-
-        <!--check out getbootstrap.com/docs/5.3/forms/layout/   to maybe get a better layout going-->
-
-
-        <button type="submit" class="btn btn-primary" onclick="return validateInput()">Sign Up!</button>
-        <a href="UserSignIn" class="btn btn-link">Go Back</a>
-
+        </form>
     </div>
-</form>
+</div>
