@@ -28,27 +28,30 @@
 
 <title>Sign In Page</title>
 
-<h1>This is the Sign In page.</h1>
+<h1>Sign In</h1>
+<div class="background-container">
+    <div class="content-section">
+        <form method="post">
+            <div class="content_box">
 
-<form method="post">
-    <div class="sign_in_box">
+                <div>
+                    <label for="inputUserName">Username:</label>
+                    <input type="text" class="form-control" id="inputUserName" asp-for="SignInUser.UserName"/>
+                    <span asp-validation-for="SignInUser.UserName" class="text-danger" id="UserNameError"></span>
 
-        <div>
-            <label for="inputUserName">Username:</label>
-            <input type="text" class="form-control" id="inputUserName" asp-for="SignInUser.UserName"/>
-            <span asp-validation-for="SignInUser.UserName" class="text-danger" id="UserNameError"></span>
+                </div>
 
-        </div>
-
-        <div class="sign_in_box_row">
-            <label for="inputPassword">Password:</label>
-            <input type="text" class="form-control" id="inputPassword" asp-for="SignInUser.UserPasswordHash" />  
-            <span asp-validation-for="SignInUser.UserPasswordHash" class="text-danger" id="PasswordError">@Model.ServerSidePasswordError</span>
-        </div>
+                <div class="sign_in_box_row">
+                    <label for="inputPassword">Password:</label>
+                    <input type="text" class="form-control" id="inputPassword" asp-for="SignInUser.UserPasswordHash" />  
+                    <span asp-validation-for="SignInUser.UserPasswordHash" class="text-danger" id="PasswordError">@Model.ServerSidePasswordError</span>
+                </div>
 
     
-        <button type="submit" class="btn btn-primary" onclick="return validateInput()">Log in!</button> <!-- goes to homepage if valid-->
+                <button type="submit" class="btn btn-primary" onclick="return validateInput()">Log in!</button> <!-- goes to homepage if valid-->
 
-        <a href="NewUser" class="btn btn-link">Sign Up</a>
+                <a href="NewUser" class="btn btn-link">Sign Up</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>
