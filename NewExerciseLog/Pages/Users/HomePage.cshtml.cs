@@ -23,13 +23,15 @@ namespace NewExerciseLog.UI.Pages.Users
         {
             userId = id;
             ID = id;
-            string sql = "SELECT * FROM ExerciseGoal " +
-                "INNER JOIN Exercise ON ExerciseGoal.ExerciseId = Exercise.ExerciseId " +
-               "WHERE UserId=@UserId";
 
+
+           //form list of goals
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
-                SqlCommand cmd = new SqlCommand(sql, conn);
+				string sql = "SELECT * FROM ExerciseGoal " +
+			    "INNER JOIN Exercise ON ExerciseGoal.ExerciseId = Exercise.ExerciseId " +
+			    "WHERE UserId=@UserId";
+				SqlCommand cmd = new SqlCommand(sql, conn);
 				cmd.Parameters.AddWithValue("@UserId", id);
 				conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -43,16 +45,25 @@ namespace NewExerciseLog.UI.Pages.Users
                         goal.Total = reader["Total"].ToString();
                         goal.ExerciseId = (int)reader["ExerciseId"];
                         goal.ExerciseGoalId = (int)reader["ExerciseGoalId"];
+
+						int goalMinutes = (Int32.Parse(goal.Goal.Substring(0, 2)) * 60) + Int32.Parse(goal.Goal.Substring(3, 2));
+						int totalMinutes = (Int32.Parse(goal.Total.Substring(0, 2)) * 60) + Int32.Parse(goal.Total.Substring(3, 2));
+						if (totalMinutes > 0)
+                            goal.Percent = Math.Round(100*(double)totalMinutes/goalMinutes, 2);
+                        else
+                            goal.Percent = 0;
+
+
                         goals.Add(goal);
                     }
                 }
             }
 
 			//find the name
-			sql = "SELECT UserFirstName, UserLastName FROM [User] " +
-			   "WHERE UserId=@UserId ;";
 			using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
 			{
+				String sql = "SELECT UserFirstName, UserLastName FROM [User] " +
+			    "WHERE UserId=@UserId ;";
 				SqlCommand cmd = new SqlCommand(sql, conn);
 				cmd.Parameters.AddWithValue("@UserId", id);
 				conn.Open();

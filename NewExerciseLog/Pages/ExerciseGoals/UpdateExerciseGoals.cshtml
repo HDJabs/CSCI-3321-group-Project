@@ -1,6 +1,7 @@
 ﻿@page
 @model NewExerciseLog.UI.Pages.ExerciseGoals.UpdateExerciseGoalsModel
 @{
+	Layout = "/Pages/Shared/Signed-in.cshtml";
 }
 
 
@@ -25,45 +26,48 @@
 	}
 	
 </script>
-
-<form method="post">
-	<title>Exercise-Time Goals Page</title>
+<div class="background-container">
+	<body class="content-section">
+		<form method="post">
+			<title>Exercise-Time Goals Page</title>
 	
-	@foreach(var obj in Model.Goals){
-	<h1 id="head">
-		Update goal for @obj.ExerciseName 
-	</h1>
-	}
+			@foreach(var obj in Model.Goals){
+			<h1 id="head">
+				Update goal for @obj.ExerciseName 
+			</h1>
+			}
 
-	<table>
+			<table>
 		
-		<tr>
-			<td>
-				<label for="input-hours">Hours:</label>
-				<input class="form-control" asp-for="Hours" type="number" id="input-hours" min="0" max="20" />
-			</td>
-			<td>
-				<span asp-validation-for="Hours" id="hours-error"></span>
-			</td>	
+				<tr>
+					<td>
+						<label for="input-hours">Hours:</label>
+						<input class="form-control" asp-for="Hours" type="number" id="input-hours" min="0" max="20" />
+					</td>
+					<td>
+						<span asp-validation-for="Hours" id="hours-error"></span>
+					</td>	
 		
-			<td>
-				<label for="input-minutes">Minutes:</label>
-				<input class="form-control" asp-for="Minutes" type="number" id="input-minutes" min="0" max="59" />
-			</td>
-			<td>
-				<span asp-validation-for="Minutes" id ="minutes-error"></span>
-			</td>
-		</tr>
+					<td>
+						<label for="input-minutes">Minutes:</label>
+						<input class="form-control" asp-for="Minutes" type="number" id="input-minutes" min="0" max="59" />
+					</td>
+					<td>
+						<span asp-validation-for="Minutes" id ="minutes-error"></span>
+					</td>
+				</tr>
 		
 		
-	</table>
+			</table>
 
 	
-	<button type="submit" class="btn btn-primary" onclick="return validateInput()">Update!</button>
+			<button type="submit" class="btn btn-primary" onclick="return validateInput()">Update!</button>
 
-	<a asp-page="/Users/HomePage" asp-route-id="@Model.ID" class="btn btn-link">back home</a>
+			<a asp-page="/Users/HomePage" asp-route-id="@Model.ID" class="btn btn-link">back home</a>
 
-	<br />
+			<br />
 	
 
-</form>
+		</form>
+	</body>
+</div>
