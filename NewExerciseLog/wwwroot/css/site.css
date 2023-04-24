@@ -48,11 +48,11 @@ body {
 
 #goal-table, #goal-table th, td {
     border: 1px solid black;
-    padding: 5px;
+    padding: 8px;
 }
 
-.sign_in_box {
-    width: 50%;
+.content_box{
+    padding: 10px;
 }
 
 .background-container {
@@ -60,18 +60,14 @@ body {
     width: 1110px;
     background-size: 100% 100%;
     background-image: url('https://media.istockphoto.com/id/1158033187/photo/white-sheet-of-paper-for-copy-space-plastic-dumbbells-on-purple-background-creative-fitness.jpg?s=170667a&w=0&k=20&c=IWcQuCb3_tlNu-7R5zu2b_ON67PMzVIWrWo-GOKrv8g=');
+    title: "alt text";
     padding-top: 235px;
     padding-bottom: 170px;
-    padding-right: 546px;
+    padding-right: 475px;
     padding-left: 115px;
 }
 
-.content-section {
-    
-}
 
-#main-page-content {
-    vertical-align: middle;
-    padding-top: 50px;
-    text-align: center;
+#th-percent{
+    width:80px;
 }

@@ -6,7 +6,7 @@
 
 <h1>Select a New Exercise</h1>
 <div class="background-container">
-	<body class="content-section">
+	<div class="content_box">
 		<form method="post">
 			@foreach(var obj in Model.exercises){
 				<div>
@@ -15,10 +15,11 @@
 					</button>
 					<h>@obj.ExerciseName</h>
 				</div>
+				<br />
 			}
 		</form>
 		<br />
 		<a asp-route-id=@Model.ID asp-page="/Users/HomePage">HomePage</a>
-	</body>
+	</div>
 </div>
 

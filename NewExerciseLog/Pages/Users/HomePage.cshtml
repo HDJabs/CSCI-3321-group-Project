@@ -5,20 +5,21 @@
 }
 
 <title>Home Page</title>
-<h1>This is the Home Page</h1>
 <h2>Welcome, @Model.UserFirstName @Model.UserLastName!</h2>
 
 
 <div class="background-container">
-	<body class="content-section">
+	<div class="content-section">
 		
 		<table id="goal-table">
-			<tr>
-				<th>Exercise</th>
-				<th>Goal</th>
-				<th>Total</th>
-				<th>Percent</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Exercise</th>
+					<th>Goal</th>
+					<th>Total</th>
+					<th id="th-percent">Percent</th>
+				</tr>
+			</thead>
 			@foreach (var obj in Model.goals)
 			{
 				<form method="post">
@@ -26,7 +27,7 @@
 					<td>@obj.ExerciseName</td>
 					<td>@obj.Goal</td>
 					<td>@obj.Total</td>
-					<td>@obj.Percent %</td>
+					<td>@obj.Percent %  </td>
 					<td>
 						<a class="btn btn-primary" asp-route-exerciseGoalId=@obj.ExerciseGoalId asp-route-id=@Model.ID asp-page="/ExerciseGoals/UpdateExerciseGoals">
 						<i class="bi bi-pencil-square">Edit</i>
@@ -59,7 +60,7 @@
 
 
 		
-	</body>
+	</div>
 </div>
 
 

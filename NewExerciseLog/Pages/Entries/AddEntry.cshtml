@@ -29,11 +29,11 @@
 
 <title>Add Entry Page</title>
 
-<h1>This is the Add Entry page.</h1>
+<h1>Add an Entry.</h1>
 <div class="background-container">
-    <body class="content-section">
+    <div class="content-section">
         <form method="post">
-            <div id="div1">
+            <div id="div1" class="content_box">
                 <div>
 
                     <label for="input-exercise">Exercise:</label>
@@ -73,5 +73,5 @@
                 <a asp-page="/Users/HomePage" asp-route-id=@Model.currentUser.UserId class="btn btn-link"> Go Home</a>
             </div>
         </form>
-    </body>
+    </div>
 </div>
