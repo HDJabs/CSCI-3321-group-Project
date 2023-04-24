@@ -5,8 +5,10 @@
     [HoursExercised]   INT      NOT NULL,
     [MinutesExercised] INT      NOT NULL,
     CONSTRAINT [PK__Entry__F57BD2F745B94190] PRIMARY KEY CLUSTERED ([EntryId] ASC),
-    CONSTRAINT [FK_Entry_ExerciseGoal] FOREIGN KEY ([ExerciseGoalId]) REFERENCES [dbo].[ExerciseGoal] ([ExerciseGoalId])
+    CONSTRAINT [FK_Entry_ExerciseGoal] FOREIGN KEY ([ExerciseGoalId]) REFERENCES [dbo].[ExerciseGoal] ([ExerciseGoalId]) ON DELETE CASCADE
 );
+
+
 
 
 
