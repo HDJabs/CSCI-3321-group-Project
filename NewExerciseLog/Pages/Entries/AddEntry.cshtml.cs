@@ -69,7 +69,7 @@ namespace NewExerciseLog.UI.Pages.Entries
         {
             NewEntry.ExerciseId = Int32.Parse(Request.Form["exercise"]);
 
-            //find exercise goalID for NewEntry using exercise id and user id
+            //find ExerciseGoalID using exercise id and user id to populate NewEntry object
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
                 
@@ -90,7 +90,7 @@ namespace NewExerciseLog.UI.Pages.Entries
                 }
             }
 
-            //insert
+            //insert NewEntry into database
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
                 // step 1
@@ -119,28 +119,25 @@ namespace NewExerciseLog.UI.Pages.Entries
                 conn.Open();
                 SqlDataReader reader = cmd1.ExecuteReader();
                 reader.Read();
-                String total = reader["Total"].ToString();
+                String total = reader["Total"].ToString(); //total = the the total from the database
                 conn.Close();
                 //                 (               #hours * 60             ) + (         #minutes            )
-                int totalMinutes = (Int32.Parse(total.Substring(0, 2)) * 60) + Int32.Parse(total.Substring(3, 2));
-                int newEntryMinutes = (60 * NewEntry.HoursExercised) + NewEntry.MinutesExercised;
-                totalMinutes += newEntryMinutes;
-                int minutes = totalMinutes % 60;
-                int hours = (totalMinutes - minutes) / 60;
-                String strHours = "";
-                String strMinutes = "";
-                if (hours < 10) { strHours += "0"; }
-                strHours += hours.ToString();
-                if (minutes < 10) { strMinutes += "0"; }
-                strMinutes += minutes.ToString();
-
+                int totalMinutes = (Int32.Parse(total.Substring(0, 2)) * 60) + Int32.Parse(total.Substring(3, 2)) + (60 * NewEntry.HoursExercised) + NewEntry.MinutesExercised;
+                int minutes = totalMinutes % 60; //parsing 
+                int hours = (totalMinutes - minutes) / 60; //parsing
+                String newTotal = "";
+                if (hours < 10) { newTotal += "0"; }
+                newTotal += hours.ToString() + ":";
+                if (minutes < 10) { newTotal += "0"; }
+                newTotal += minutes.ToString();
+                
 
                 //update total
                 string sql2 = "UPDATE ExerciseGoal SET Total = @newTotal WHERE USERID = @userId AND ExerciseId = @exerciseId;";
                 SqlCommand cmd2 = new SqlCommand(sql2, conn);
                 cmd2.Parameters.AddWithValue("@userId", id);
                 cmd2.Parameters.AddWithValue("@ExerciseId", NewEntry.ExerciseId);
-                cmd2.Parameters.AddWithValue("@newTotal", strHours + ":" + strMinutes);
+                cmd2.Parameters.AddWithValue("@newTotal", newTotal);
                 conn.Open();
                 cmd2.ExecuteNonQuery();
                 conn.Close();
