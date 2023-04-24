@@ -4,19 +4,18 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
+<div class="text-center" >
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="background-container">
+        <div class="content-section" id="main-page-content">
+            <h2>Welcome to the Exercise Log</h2>
+            <br />
+            <!--a button for sign in-->
+            <a asp-page="/Users/UserSignIn" class="btn btn-primary"> sign in</a>
+            <!--a button for sign up-->
+            <a href="Users/NewUser" > sign up</a>
+        </div>
+    </div>
 </div>
 
-<!--
-<ul>
-    <li><a asp-area="" asp-page="/AddLog/Index">AddLog</a></li>
-    <li><a asp-area="" asp-page="/ViewStats/Index">ViewStats</a></li>
-    <li><a asp-area="" asp-page="/Users/SignIn">/Users/SignIn</a></li>
-    <li><a asp-area="" asp-page="/Users/SignUp">/Users/SignUp</a></li>
-	<li><a asp-area="" asp-page="/HomePage/Index">/HomePage/Index</a></li>
 
-
-</ul>
--->

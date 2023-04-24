@@ -19,5 +19,7 @@ namespace NewExerciseLog.UI.Models
         public string Goal { get; set; } = "12:34";
 
         public string Total { get; set; } = "00:00";
+
+        public double Percent { get; set; } = 0.0;
     }
 }

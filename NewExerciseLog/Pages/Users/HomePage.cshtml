@@ -1,26 +1,25 @@
 ﻿@page
 @model NewExerciseLog.UI.Pages.Users.HomePageModel
 @{
+	Layout="/Pages/Shared/Signed-in.cshtml";
 }
-<script>
-	
-</script>
+
 <title>Home Page</title>
-<h1>This is the Home Page</h1>
 <h2>Welcome, @Model.UserFirstName @Model.UserLastName!</h2>
 
 
-
-	
-	<a asp-page="/Entries/AddEntry" asp-route-id=@Model.ID class="btn btn-primary ">Add Log</a>
-
-	<div>
+<div class="background-container">
+	<div class="content-section">
+		
 		<table id="goal-table">
-			<tr>
-				<th>Exercise</th>
-				<th>Goal</th>
-				<th>Total</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Exercise</th>
+					<th>Goal</th>
+					<th>Total</th>
+					<th id="th-percent">Percent</th>
+				</tr>
+			</thead>
 			@foreach (var obj in Model.goals)
 			{
 				<form method="post">
@@ -28,6 +27,7 @@
 					<td>@obj.ExerciseName</td>
 					<td>@obj.Goal</td>
 					<td>@obj.Total</td>
+					<td>@obj.Percent %  </td>
 					<td>
 						<a class="btn btn-primary" asp-route-exerciseGoalId=@obj.ExerciseGoalId asp-route-id=@Model.ID asp-page="/ExerciseGoals/UpdateExerciseGoals">
 						<i class="bi bi-pencil-square">Edit</i>
@@ -48,19 +48,20 @@
 						<i class="bi bi-plus-square-dotted">New Exercise</i>
 					</a>
 				</td>
+				<td colspan="5">
+					<a asp-page="/Entries/AddEntry" asp-route-id=@Model.ID class="btn btn-primary ">Add Log</a>
+					<a class="btn btn-primary" asp-route-id=@Model.ID asp-page="/Entries/ViewEntries">View Entries</a>
+					<a href="/Users/UserSignIn" class="btn btn-link"> Sign Out</a>
+				</td>
 			</tr>
 
 		</table>
+		
+
+
+		
 	</div>
-
-	<div>
-		<a class="btn btn-primary" asp-route-id=@Model.ID asp-page="/Entries/ViewEntries">View Entries</a>
-	</div>
-
-
-
-	<a href="/Users/UserSignIn" class="btn btn-link"> Sign Out</a>
-	
+</div>
 
 
 

@@ -97,7 +97,7 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 		public IActionResult OnPost(int id, int exerciseId)
 		{
 
-			
+			//updating the data base. adding a goal
 			String sql = "INSERT INTO [ExerciseGoal] (ExerciseId, UserId, Goal, Total) " +
 				"VALUES (@exerciseId, @userId, '00:00', '00:00');";
 			using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
@@ -107,10 +107,23 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 				cmd.Parameters.AddWithValue("@userId", id);
 				conn.Open();
 				cmd.ExecuteNonQuery();
+				conn.Close();
 			}
 
+			//searching for that goal to get the id
+			sql = "Select ExerciseGoalId FROM [ExerciseGoal] WHERE UserId=" + id + " AND ExerciseId=" + exerciseId + ";";
+            using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+				reader.Read();
+				int exerciseGoalId = Int32.Parse(reader["ExerciseGoalId"].ToString());
+                conn.Close();
+                return RedirectToPage("/ExerciseGoals/UpdateExerciseGoals", new { id = id, exerciseGoalId = exerciseGoalId });
+            }
 
-			return RedirectToPage("/Users/HomePage", new { id = userId.ToString() });
+            
 		}
 
 	}

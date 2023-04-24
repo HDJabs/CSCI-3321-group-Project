@@ -1,21 +1,25 @@
 ﻿@page
 @model NewExerciseLog.UI.Pages.ExerciseGoals.NewModel
 @{
+	Layout = "/Pages/Shared/Signed-in.cshtml";
 }
 
 <h1>Select a New Exercise</h1>
-
-<form method="post">
-	@foreach(var obj in Model.exercises){
-		<div>
-			<button type="submit" class="btn btn-primary" asp-route-id=@Model.ID asp-route-exerciseId=@obj.ExerciseId>
-				<i class="bi bi-plus-square-dotted"></i>
-			</button>
-			<h>@obj.ExerciseName</h>
-		</div>
-	}
-</form>
-<br />
-<a asp-route-id=@Model.ID asp-page="/Users/HomePage">HomePage</a>
-
+<div class="background-container">
+	<div class="content_box">
+		<form method="post">
+			@foreach(var obj in Model.exercises){
+				<div>
+					<button type="submit" class="btn btn-primary" asp-route-id=@Model.ID asp-route-exerciseId=@obj.ExerciseId>
+						<i class="bi bi-plus-square-dotted"></i>
+					</button>
+					<h>@obj.ExerciseName</h>
+				</div>
+				<br />
+			}
+		</form>
+		<br />
+		<a asp-route-id=@Model.ID asp-page="/Users/HomePage">HomePage</a>
+	</div>
+</div>
 
