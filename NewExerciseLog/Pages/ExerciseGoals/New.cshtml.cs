@@ -16,8 +16,13 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 		[BindProperty]
 		public List<Exercise> exercises { get; set; } = new List<Exercise>();
 
-		public void OnGet(int id)
+		public IActionResult OnGet(int id)
         {
+            if (!HttpContext.User.HasClaim("Id", id.ToString()))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
             userId = id;
 			ID = id;
 			//1. make list of all exercise IDs
@@ -94,6 +99,8 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 					}
 				}
 			}
+
+			return Page();
 		}//end OnGet
 
 		public IActionResult OnPost(int id, int exerciseId)

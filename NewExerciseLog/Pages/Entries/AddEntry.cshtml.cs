@@ -28,8 +28,15 @@ namespace NewExerciseLog.UI.Pages.Entries
 
         [BindProperty]
         public int exeId { get; set; }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+
+            if (!HttpContext.User.HasClaim("Id", id.ToString()))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
+
             //find the user using the id
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString())) {
                 string sql = "SELECT UserFirstName, UserName, UserId FROM [User] WHERE UserId = @userId;"; SqlCommand cmd = new SqlCommand(sql, conn); cmd.Parameters.AddWithValue("@userId", id); conn.Open(); SqlDataReader reader = cmd.ExecuteReader();
@@ -64,7 +71,7 @@ namespace NewExerciseLog.UI.Pages.Entries
                     }
                 }
             }
-
+            return Page();
         }
 
         public IActionResult OnPost(int id, int exerciseId)
