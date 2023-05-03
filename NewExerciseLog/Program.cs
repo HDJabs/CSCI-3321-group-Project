@@ -3,6 +3,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddAuthentication("ExerciseLogCookie").AddCookie("ExerciseLogCookie", options =>
+{
+    options.Cookie.Name = "ExerciseLogCookie";
+    options.LoginPath = "/Users/Login";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,7 +24,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseAuthorization();//could be reason for pages "OnGet()-ing" twice
 
 app.MapRazorPages();
 

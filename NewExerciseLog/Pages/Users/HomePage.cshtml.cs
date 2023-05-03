@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection.Metadata;
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewExerciseLog.UI.Pages.Users
 {
+    [Authorize]
     public class HomePageModel : PageModel
     {
    

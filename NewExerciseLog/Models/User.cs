@@ -8,7 +8,7 @@ namespace NewExerciseLog.UI.Models
 	{
         [Key]
 		public int UserId { get; set; }
-        [Required(ErrorMessage = "user ID is required")]
+        //[Required(ErrorMessage = "user ID is required")]
         public string FirstName { get; set; } = String.Empty;
         public string LastName { get; set; } = String.Empty;
         

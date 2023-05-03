@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 
 namespace NewExerciseLog.UI.Pages.Entries
 {
+    [Authorize]
     public class AddEntryModel : PageModel
     {
         [BindProperty]

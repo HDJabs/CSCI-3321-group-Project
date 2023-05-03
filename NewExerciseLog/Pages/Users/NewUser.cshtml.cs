@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
 using System.Reflection.Metadata;
+using System.Security.Claims;
 
 namespace NewExerciseLog.UI.Pages.Users
 {
@@ -19,7 +21,7 @@ namespace NewExerciseLog.UI.Pages.Users
         }
 
    
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +86,27 @@ namespace NewExerciseLog.UI.Pages.Users
                     {
                         reader.Read();
                         newID = (int)reader["UserId"];
-                        return RedirectToPage("HomePage", new { id = newID });
+                        
+                        //make cookie
+                        Credential LoginInfo = new Credential() { UserName = NewUser.UserName, Password = NewUser.UserPasswordHash };
+                        if (ModelState.IsValid)
+                        {
+
+                            var claims = new List<Claim> {
+                                new Claim("UserName", LoginInfo.UserName),
+                                new Claim("Password", LoginInfo.Password)
+                            };
+
+                            var identity = new ClaimsIdentity(claims, "ExerciseLogCookie");
+                            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                            await HttpContext.SignInAsync("ExerciseLogCookie", principal);
+
+                            return RedirectToPage("HomePage", new { id = newID }); // send em to the home page! (now that we have a cookie)
+                        }
+                        return Page();
+                        //cookie made.
+                      
                     }
                 }
             }
