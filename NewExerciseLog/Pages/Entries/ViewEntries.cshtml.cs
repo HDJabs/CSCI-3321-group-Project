@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -5,6 +6,7 @@ using NewExerciseLog.UI.Models;
 
 namespace NewExerciseLog.UI.Pages.Entries
 {
+	[Authorize]
     public class ViewEntriesModel : PageModel
     {
         [BindProperty]
@@ -12,9 +14,14 @@ namespace NewExerciseLog.UI.Pages.Entries
 
 		public int ID { get; set; }
 
-		public void OnGet(int id)
+		public IActionResult OnGet(int id)
         {
-			ID = id;
+            if (!HttpContext.User.HasClaim("Id", id.ToString()))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+
+            ID = id;
 			//search database and populate the list with ExGoalId, EntDate, Hrs, Min.
 			// also add to ExerciseName
 			string sql = "SELECT * FROM [Entry] " +
@@ -45,7 +52,7 @@ namespace NewExerciseLog.UI.Pages.Entries
 			}
 
 
-
+			return Page();
 
 		}
     }

@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection.Metadata;
 using Microsoft.Data.SqlClient;
 using NewExerciseLog.UI.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewExerciseLog.UI.Pages.Users
 {
+    [Authorize]
     public class HomePageModel : PageModel
     {
    
@@ -19,13 +20,24 @@ namespace NewExerciseLog.UI.Pages.Users
 
         public string UserLastName { get; set; }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             userId = id;
             ID = id;
 
+            //check cookie for credentials
+            //compare incoming id (above) to the id in the cookie
+            if (!HttpContext.User.HasClaim("Id", id.ToString()))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+   
 
-           //form list of goals
+
+
+
+
+            //form list of goals
             using (SqlConnection conn = new SqlConnection(DBHelper.GetConnectionString()))
             {
 				string sql = "SELECT * FROM ExerciseGoal " +
@@ -75,7 +87,11 @@ namespace NewExerciseLog.UI.Pages.Users
 					UserLastName = reader["UserLastName"].ToString();
 				}
 			}
-		}
+
+            return Page();
+        }
+
+
 
         public IActionResult OnPost(int id, int exerciseGoalId)
         {

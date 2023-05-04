@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -6,6 +7,7 @@ using System.Reflection.Metadata;
 
 namespace NewExerciseLog.UI.Pages.ExerciseGoals
 {
+	[Authorize]
     public class UpdateExerciseGoalsModel : PageModel
     {
 		
@@ -19,16 +21,21 @@ namespace NewExerciseLog.UI.Pages.ExerciseGoals
 
 		public int ID { get; set; }
       
-        public void OnGet(int id, int exerciseGoalId)
+        public IActionResult OnGet(int id, int exerciseGoalId)
         {
-			ID= id;
+
+            if (!HttpContext.User.HasClaim("Id", id.ToString()))
+            {
+                return RedirectToPage("/Users/Login");
+            }
+            ID = id;
 			LoadGoal(id, exerciseGoalId);
 			Hours = Int32.Parse(Goal.Goal.Substring(0, 2));
 			Minutes = Int32.Parse(Goal.Goal.Substring(3, 2));
 
 
 
-
+			return Page();
 		}
 
 		public void LoadGoal(int id, int exerciseGoalId)
